@@ -17,10 +17,10 @@ echo "Updating dotfiles from remote..."
 # Handle shell configurations:
 if [ "$( echo $SHELL )" == "/bin/zsh" ]; then
   echo "ZSH detected... Loading configuration"
-  echo " => Installing Oh-My-Zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   echo " => Loading configuration file..."
   ln -sfv "$DOTFILES_DIR/runcom/zsh/.zshrc" ~
+  echo " => Installing Oh-My-Zsh..."
+  "$(sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")"
 elif [ "$( echo $SHELL )" == "/bin/bash" ]; then
   echo "BASH detected... Loading configuration"
   ln -sfv "$DOTFILES_DIR/runcom/bash/.bash_profile" ~
