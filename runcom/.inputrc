@@ -1,0 +1,15 @@
+# Make tab autocomplete ignore case
+set completion-ignore-case on
+
+# List all matches for autocompletion
+set show-all-if-ambiguous on
+
+# Flip trough autocompletion matches with Shift-Tab
+"\e[Z": menu-complete
+
+# Filtered history search
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Mark symlinks in directories with a /
+set mark-symlinked-directories on
