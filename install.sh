@@ -25,9 +25,16 @@ elif [ "$( echo $SHELL )" == "/bin/bash" ]; then
   echo "BASH detected... Loading configuration"
   ln -sfv "$DOTFILES_DIR/runcom/bash/.bash_profile" ~
   ln -sfv "$DOTFILES_DIR/runcom/bash/.inputrc" ~
-  ln -sfv "$DOTFILES_DIR/runcom/bash/.bashrc"~
+  ln -sfv "$DOTFILES_DIR/runcom/bash/.bashrc" ~
   ln -sfv "$DOTFILES_DIR/system/.alias" ~
 fi
+
+# Git configuration
+echo "Establishing git configuration..."
+echo " => .gitconfig"
+ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
+echo " => .gitignore_global"
+ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
 # Vim plugins
 echo "Installing VIM plugins..."
@@ -35,7 +42,7 @@ echo "Installing VIM plugins..."
 echo " => Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Copy .vimrc file
-echo " => Load .vimrc" 
+echo " => Load .vimrc"
 ln -sfv "$DOTFILES_DIR/vim/.vimrc" ~
 # Install Vundle plugins
 vim +PluginInstall +qall
@@ -44,7 +51,6 @@ vim +PluginInstall +qall
 #echo " => YouCompleteMe (with semantic completion)"
 #pacman -S clang
 #pacman -S cmake
-
 
 
 #ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~

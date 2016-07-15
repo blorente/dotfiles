@@ -1,0 +1,5 @@
+[user]
+	email = blorente@ucm.es
+	name = Borja Lorente
+[core]
+	excludesfile = /home/borja/.gitignore_global
