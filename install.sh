@@ -36,6 +36,28 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 echo " => .gitignore_global"
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
+# Optional utilities:
+echo -n "Install additional utilities? [y/n]: "
+read repl
+if [ $repl == "y" ] ; then
+  cd ~
+  mkdir utils
+  " => Scanning the /utils/ subfolder for scripts"
+  for SCRIPT in /utils/*.sh
+	do
+		if [ -f $SCRIPT -a -x $SCRIPT ]
+		then
+      if [ "$( basename  ${SCRIPT} )" == "*install*.sh" ] ; then
+        echo " --> Executing install script: $SCRIPT"
+  			$SCRIPT
+      else
+        echo " --> Creating symlink @ ~/utils for script: $SCRIPT"
+        ln -sfv $SCRIPT ~/utils
+  		fi
+    fi
+	done
+fi
+
 # Vim plugins
 echo "Installing VIM plugins..."
 # Vundle
