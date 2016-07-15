@@ -51,7 +51,7 @@ if [ $repl == "y" ] ; then
   cd ~
   mkdir utils
   " => Scanning the /utils/ subfolder for scripts"
-  for SCRIPT in "$DOTFILES_DIR/utils/*.sh"
+  for SCRIPT in "$( find $DOTFILES_DIR/utils/*.sh )"
 	do
 		if [ -f $SCRIPT -a -x $SCRIPT ]
 		then
@@ -59,7 +59,7 @@ if [ $repl == "y" ] ; then
         echo " --> Executing install script: $SCRIPT"
   			$SCRIPT
       else
-        echo " --> Creating symlink @ ~/utils for script: $SCRIPT"
+        echo " --> Creating symlink @ ~/utils"
         ln -sfv $SCRIPT ~/utils
   		fi
     fi
