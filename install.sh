@@ -9,15 +9,15 @@ EXTRA_DIR="$HOME/.extra"
 echo "Dotfiles are in ${DOTFILES_DIR}"
 
 # Update dotfiles themselves first
-echo "___________________________________"
+echo " __________________________________ "
 echo "|Updating from remote...           |"
-echo "___________________________________"
-[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
+echo "|__________________________________|"
+#[ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
 
 # Handle shell configurations:
-echo "___________________________________"
+echo " __________________________________ "
 echo "|Loading shell configurations...   |"
-echo "___________________________________"
+echo "|__________________________________|"
 if [ "$( echo $SHELL )" == "/usr/bin/zsh" ] || [ "$( echo $SHELL )" == "/bin/zsh" ] ; then
   echo "ZSH detected... Loading configuration"
   echo " => Installing Oh-My-Zsh..."
@@ -33,43 +33,42 @@ elif [ "$( echo $SHELL )" == "/bin/bash" ]; then
 fi
 
 # Git configuration
-echo "___________________________________"
-echo "|Establishing git configuration...|"
-echo "___________________________________"
+echo " __________________________________ "
+echo "|Establishing git configuration... |"
+echo "|__________________________________|"
 echo " => .gitconfig"
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 echo " => .gitignore_global"
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
 # Optional utilities:
-echo "___________________________________"
+echo " __________________________________ "
 echo "|Utils...                          |"
-echo "___________________________________"
+echo "|__________________________________|"
 echo -n "Install additional utilities? [y/n]: "
 read repl
 if [ $repl == "y" ] ; then
   cd ~
+  rm -rf utils
   mkdir utils
   " => Scanning the /utils/ subfolder for scripts"
-  for SCRIPT in "$( find $DOTFILES_DIR/utils/*.sh )"
+  SCRIPTS=$( find $DOTFILES_DIR/utils/ -type f )
+  for SCRIPT in $SCRIPTS
 	do
 		if [ -f $SCRIPT -a -x $SCRIPT ]
 		then
-      if [ "$( basename  ${SCRIPT} )" == "*install*.sh" ] ; then
-        echo " --> Executing install script: $SCRIPT"
-  			$SCRIPT
-      else
-        echo " --> Creating symlink @ ~/utils"
-        ln -sfv $SCRIPT ~/utils
-  		fi
+      case $SCRIPT in
+      (*install*.sh) echo " => Executing install script: $SCRIPT" && $SCRIPT;;
+      (*)            echo " => Creating symlink @ ~/utils" && ln -sfv $SCRIPT ~/utils;;
+      esac
     fi
 	done
 fi
 
 # Vim plugins
-echo "___________________________________"
+echo " __________________________________ "
 echo "|Installing Vim plugins...         |"
-echo "___________________________________"
+echo "|__________________________________|"
 # Vundle
 echo " => Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
