@@ -15,7 +15,7 @@ echo "Updating dotfiles from remote..."
 [ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
 
 # Handle shell configurations:
-if [ "$( echo $SHELL )" == "usr/bin/zsh" ]; then
+if [ "$( echo $SHELL )" == "usr/bin/zsh" ] || [ "$( echo $SHELL )" == "bin/zsh" ] ; then
   echo "ZSH detected... Loading configuration"
   echo " => Installing Oh-My-Zsh..."
   curl -L http://install.ohmyz.sh | sh
