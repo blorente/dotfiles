@@ -58,7 +58,7 @@ if [ $repl == "y" ] ; then
 		if [ -f $SCRIPT -a -x $SCRIPT ]
 		then
       case $SCRIPT in
-      (*install*.sh) echo " => Executing install script: $SCRIPT" && $SCRIPT;;
+      (*install*.sh) echo " => Executing install script: $SCRIPT" && chmod +x $SCRIPT && $SCRIPT;;
       (*)            echo " => Creating symlink @ ~/utils" && ln -sfv $SCRIPT ~/utils;;
       esac
     fi
