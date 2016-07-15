@@ -9,12 +9,15 @@ EXTRA_DIR="$HOME/.extra"
 echo "Dotfiles are in ${DOTFILES_DIR}"
 
 # Update dotfiles themselves first
-
-echo "Updating dotfiles from remote..."
-
+echo "___________________________________"
+echo "|Updating from remote...           |"
+echo "___________________________________"
 [ -d "$DOTFILES_DIR/.git" ] && git --work-tree="$DOTFILES_DIR" --git-dir="$DOTFILES_DIR/.git" pull origin master
 
 # Handle shell configurations:
+echo "___________________________________"
+echo "|Loading shell configurations...   |"
+echo "___________________________________"
 if [ "$( echo $SHELL )" == "/usr/bin/zsh" ] || [ "$( echo $SHELL )" == "/bin/zsh" ] ; then
   echo "ZSH detected... Loading configuration"
   echo " => Installing Oh-My-Zsh..."
@@ -30,20 +33,25 @@ elif [ "$( echo $SHELL )" == "/bin/bash" ]; then
 fi
 
 # Git configuration
-echo "Establishing git configuration..."
+echo "___________________________________"
+echo "|Establishing git configuration...|"
+echo "___________________________________"
 echo " => .gitconfig"
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 echo " => .gitignore_global"
 ln -sfv "$DOTFILES_DIR/git/.gitignore_global" ~
 
 # Optional utilities:
+echo "___________________________________"
+echo "|Utils...                          |"
+echo "___________________________________"
 echo -n "Install additional utilities? [y/n]: "
 read repl
 if [ $repl == "y" ] ; then
   cd ~
   mkdir utils
   " => Scanning the /utils/ subfolder for scripts"
-  for SCRIPT in /utils/*.sh
+  for SCRIPT in "$DOTFILES_DIR/utils/*.sh"
 	do
 		if [ -f $SCRIPT -a -x $SCRIPT ]
 		then
@@ -59,7 +67,9 @@ if [ $repl == "y" ] ; then
 fi
 
 # Vim plugins
-echo "Installing VIM plugins..."
+echo "___________________________________"
+echo "|Installing Vim plugins...         |"
+echo "___________________________________"
 # Vundle
 echo " => Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
