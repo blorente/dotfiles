@@ -1,1 +1,8 @@
 .*clang*
+*node_modules/*
+*.bin
+*.o
+*.orig
+*.dat
+vgcore.*
+.idea*

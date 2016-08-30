@@ -10,3 +10,5 @@ PS1='[\u@\h \W]\$ '
 BROWSER=/usr/bin/google-chrome-stable
 EDITOR=nano
 source ~/.liquidprompt/liquidprompt
+
+export ANDROID_HOME="/opt/android-sdk"

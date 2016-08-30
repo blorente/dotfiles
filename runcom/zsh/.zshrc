@@ -45,6 +45,8 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+DEFAULT_USER=blorente
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -52,8 +54,7 @@ ZSH_THEME="agnoster"
 plugins=(git)
 
 # User configuration
-
-# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export ANDROID_HOME="/opt/android-sdk"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -81,5 +82,11 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias servpy="python -m http.server 8080"
+
+# valgrind
+alias valf-scumm="valgrind --leak-check=full --track-origins=yes ./scummvm"
+alias vall-scumm="valgrind ./scummvm"
+alias valf-scumm-test="valgrind --leak-check=full --track-origins=yes ./scummvm --debugflags='tests'"
+alias vall-scumm-test="valgrind ./scummvm --debugflags='tests'"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
