@@ -90,3 +90,7 @@ alias valf-scumm-test="valgrind --leak-check=full --track-origins=yes ./scummvm 
 alias vall-scumm-test="valgrind ./scummvm --debugflags='tests'"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+PATH=$PATH:/home/borja/.gem/ruby/2.3.0/bin
+
+# added by travis gem
+[ -f /home/borja/.travis/travis.sh ] && source /home/borja/.travis/travis.sh
