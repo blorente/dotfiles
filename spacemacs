@@ -314,7 +314,8 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;;(global-unset-key (kbd "M-u"))
+  (global-set-key (kbd "C-·") 'beginning-of-line)
+  (global-set-key (kbd "C-$") 'end-of-line)
   ;;(global-unset-key (kbd "M-o"))
   ;;(global-set-key (kbd "M-u") 'backward-word)
   ;;(global-set-key (kbd "M-o") 'forward-word)
