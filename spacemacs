@@ -49,6 +49,7 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     version-control
      javascript
      csv
      ansible
@@ -62,6 +63,7 @@ values."
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
+     (colors :variables colors-enable-nyan-cat-progress-bar t)
      )
 
    ;; List of additional packages that will be installed without being
@@ -328,6 +330,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+;;  (cua-mode t)
   (setq-default dotspacemacs-configuration-layers
                 '((shell :variables shell-default-ter-shell "/bin/bash")))
   )
