@@ -146,3 +146,8 @@ alias emacsc="emacsclient -c &"
 export ANSIBLE_COW_SELECTION=eyes
 
 PATH="$PATH:/home/blorente/.conscript/bin"
+export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
+if [[ -f $THEME ]]; then
+    export DEFAULT_USER=`whoami`
+    source $THEME
+fi
