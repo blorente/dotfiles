@@ -59,7 +59,9 @@ values."
      yaml
      html
      git
-     org
+     (org :variables
+          org-enable-github-support t
+          org-enable-reveal-js-support t)
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -320,8 +322,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "C-$") 'end-of-line)
   (global-set-key (kbd "C-D") 'evil-delete-whole-line)
   ;;(global-unset-key (kbd "M-o"))
-  ;;(global-set-key (kbd "M-u") 'backward-word)
-  ;;(global-set-key (kbd "M-o") 'forward-word)
+  (global-set-key (kbd "C-<left>") 'backward-word)
+  (global-set-key (kbd "C-<right>") 'forward-word)
   )
 
 (defun dotspacemacs/user-config ()
@@ -334,6 +336,7 @@ you should place your code here."
 ;;  (cua-mode t)
   (setq-default dotspacemacs-configuration-layers
                 '((shell :variables shell-default-ter-shell "/bin/bash")))
+  (setq org-reveal-root "http://cdn.jsdeliver.net/reveal.js/3.0.0/")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
