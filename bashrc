@@ -140,8 +140,8 @@ alias gpush='git push'
 alias gl='git log --pretty=oneline'
 alias gco='git checkout'
 
-alias emacst="emacsclient -t"
-alias emacsc="emacsclient -c &"
+alias emacst="emacsclient -t -a ''"
+alias emacsc="emacsclient -c -a ''"
 
 export ANSIBLE_COW_SELECTION=eyes
 
