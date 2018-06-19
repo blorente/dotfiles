@@ -127,9 +127,9 @@ fi
 
 export PATH=/home/blorente/.cargo/bin:/home/blorente/bin:/home/blorente/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/home/blorente/.vimpkg/bin
 
-alias metap="coursier launch org.scalameta::metap:3.7.4 -r sonatype:snapshots --"
-alias metac='coursier launch org.scalameta::metac:3.2.0 -r sonatype:snapshots -- -classpath $(coursier fetch org.scala-lang:scala-library:2.12.4 -p)'
-alias metacp='coursier launch org.scalameta::metacp:3.7.4 -r sonatype:snapshots --'
+alias metap="~/Software/coursier launch org.scalameta::metap:3.7.4 -r sonatype:snapshots --"
+alias metac='~/Software/coursier launch org.scalameta::metac:3.2.0 -r sonatype:snapshots -- -classpath $(coursier fetch org.scala-lang:scala-library:2.12.4 -p)'
+alias metacp='~/Software/coursier launch org.scalameta::metacp:3.7.4 -r sonatype:snapshots --'
 
 alias gst='git status'
 alias gap='git add -p'

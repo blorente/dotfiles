@@ -326,6 +326,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;(global-unset-key (kbd "M-o"))
   (global-set-key (kbd "C-<left>") 'backward-word)
   (global-set-key (kbd "C-<right>") 'forward-word)
+  (global-set-key (kbd "C-f") 'search-forward)
   )
 
 (defun dotspacemacs/user-config ()
