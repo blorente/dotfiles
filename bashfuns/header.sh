@@ -78,19 +78,13 @@ alias timer="do_timer"
 
 source ~/.git-completion.bash
 
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-
 export ANSIBLE_COW_SELECTION=eyes
 
 PATH="$PATH:/home/blorente/.conscript/bin"
-export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
-if [[ -f $THEME ]]; then
-    export DEFAULT_USER=`whoami`
-    source $THEME
-fi
+echo "$(pwd)"
+source ~/dotfiles/bashfuns/prompt.sh
+#export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
+#if [[ -f $THEME ]]; then
+#    export DEFAULT_USER=`whoami`
+#    source $THEME
+#fi
