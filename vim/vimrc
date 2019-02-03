@@ -23,3 +23,16 @@ filetype plugin indent on
 set tabstop=4
 " On pressing tab, insert 4 spaces
 set expandtab
+
+" Leader aliases for buffer navigation
+let mapleader = " "
+nmap <Leader><Leader> :ls <enter>
+nmap <Leader>1 :1b<enter>
+nmap <Leader>2 :2b<enter>
+nmap <Leader>3 :3b<enter>
+nmap <Leader>4 :4b<enter>
+nmap <Leader>5 :5b<enter>
+nmap <Leader>6 :6b<enter>
+nmap <Leader>7 :7b<enter>
+nmap <Leader>8 :8b<enter>
+nmap <Leader>9 :9b<enter>
