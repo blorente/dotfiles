@@ -81,10 +81,4 @@ source ~/.git-completion.bash
 export ANSIBLE_COW_SELECTION=eyes
 
 PATH="$PATH:/home/blorente/.conscript/bin"
-echo "$(pwd)"
-source ~/dotfiles/bashfuns/prompt.sh
-#export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
-#if [[ -f $THEME ]]; then
-#    export DEFAULT_USER=`whoami`
-#    source $THEME
-#fi
+source ~/dotfiles/bash/prompt.sh
