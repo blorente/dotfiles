@@ -1,4 +1,3 @@
-execute pathogen#infect()
 syntax on
 colorscheme dracula
 
@@ -14,8 +13,6 @@ set number
 set incsearch
 set hlsearch
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 set hidden " Don't force save on buffer switch
 
 filetype plugin indent on
@@ -26,13 +23,16 @@ set expandtab
 
 " Leader aliases for buffer navigation
 let mapleader = " "
-nmap <Leader><Leader> :ls <enter>
-nmap <Leader>1 :1b<enter>
-nmap <Leader>2 :2b<enter>
-nmap <Leader>3 :3b<enter>
-nmap <Leader>4 :4b<enter>
-nmap <Leader>5 :5b<enter>
-nmap <Leader>6 :6b<enter>
-nmap <Leader>7 :7b<enter>
-nmap <Leader>8 :8b<enter>
-nmap <Leader>9 :9b<enter>
+nmap <Leader><Leader> :ls <cr>
+nmap <Leader>1 :1b<cr>
+nmap <Leader>2 :2b<cr>
+nmap <Leader>3 :3b<cr>
+nmap <Leader>4 :4b<cr>
+nmap <Leader>5 :5b<cr>
+nmap <Leader>6 :6b<cr>
+nmap <Leader>7 :7b<cr>
+nmap <Leader>8 :8b<cr>
+nmap <Leader>9 :9b<cr>
+
+" Convenience for escape
+inoremap <C-w> <Esc>:w <cr>
