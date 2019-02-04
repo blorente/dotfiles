@@ -1,8 +1,9 @@
 #!/bin/bash
 set -x
 
+source ~/dotfiles/vim/setup.sh
+source ~/dotfiles/emacs/setup.sh
 
 cd ~
-ln -s ~/dotfiles/vim/vimrc .vimrc
-ln -s ~/dotfiles/emacs/spacemacs .spacemacs
-
+setup_vim
+setup_emacs
