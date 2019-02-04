@@ -23,7 +23,11 @@ set expandtab
 
 " Leader aliases for buffer navigation
 let mapleader = " "
+
+" List buffers
 nmap <Leader><Leader> :ls <cr>
+
+" Switch Buffer
 nmap <Leader>1 :1b<cr>
 nmap <Leader>2 :2b<cr>
 nmap <Leader>3 :3b<cr>
@@ -34,5 +38,9 @@ nmap <Leader>7 :7b<cr>
 nmap <Leader>8 :8b<cr>
 nmap <Leader>9 :9b<cr>
 
+" Easier : (Leader+;)
+nmap <Leader>; :
+
 " Convenience for escape
 inoremap <C-w> <Esc>:w <cr>
+
