@@ -1,25 +1,24 @@
-syntax on
+""""""""""""""""""""
+" Configuration
+""""""""""""""""""""
+
+syntax on " Syntax highlighting
 colorscheme dracula
-
 filetype plugin indent on
-
-set wrap
+set wrap " Wrap lines
 set ttyfast
-set mouse=a
-
+set mouse=a " Allow clicking with the mouse
 set laststatus=2
-
-set number
+set number " Show line numbers
 set incsearch
 set hlsearch
-
 set hidden " Don't force save on buffer switch
+set tabstop=4 " Show existing tab with 4 spaces width
+set expandtab " On pressing tab, insert 4 spaces
 
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" On pressing tab, insert 4 spaces
-set expandtab
+""""""""""""""""""""
+" Keymaps
+""""""""""""""""""""
 
 " Leader aliases for buffer navigation
 let mapleader = " "
@@ -44,3 +43,15 @@ nmap <Leader>; :
 " Convenience for escape
 inoremap <C-w> <Esc>:w <cr>
 
+""""""""""""""""""""
+" Plugins
+""""""""""""""""""""
+
+" For now we use vim-plug (https://github.com/junegunn/vim-plug)
+call plug#begin('~/.vim/my_plugins')
+" Ripgrep integration
+Plug 'jremmen/vim-ripgrep'
+" Dracula theme
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+call plug#end()
