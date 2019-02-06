@@ -1,3 +1,5 @@
+source git-branch/header.sh
+
 update_master_and_rebase () {
     set -x
     remote=$1
