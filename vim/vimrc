@@ -24,7 +24,7 @@ set expandtab " On pressing tab, insert 4 spaces
 let mapleader = " "
 
 " List buffers
-nmap <Leader><Leader> :ls <cr>
+nmap <Leader>l :ls <cr>
 
 " Switch Buffer
 nmap <Leader>1 :1b<cr>
@@ -38,10 +38,10 @@ nmap <Leader>8 :8b<cr>
 nmap <Leader>9 :9b<cr>
 
 " Easier : (Leader+;)
-nmap <Leader>; :
+nmap <Leader><Leader> :
 
 " Convenience for escape
-inoremap <C-w> <Esc>:w <cr>
+inoremap <C-v> <Esc>:w <cr>
 
 """"""""""""""""""""
 " Plugins
