@@ -48,4 +48,11 @@
 #export PS1="\w:\`parse_git_branch\` "
 
 source /usr/local/etc/bash_completion.d/git-prompt.sh
-export PS1='\[\033[0;36m\]\W\[\033[0m\]$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]")$ '
+function get_emoji()  {
+  if [ $? -gt 0 ]; then
+    echo "🙈⚠️ "
+  else
+    echo "🐈✨"
+  fi
+}
+export PS1='\[\033[0;36m\]\W\[\033[0m\]$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]") $(get_emoji) '
