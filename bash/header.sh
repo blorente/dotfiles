@@ -1,22 +1,4 @@
 source ~/dotfiles/bash/git-branch/header.sh
-
-update_master_and_rebase () {
-    set -x
-    remote=$1
-    branch=$( git rev-parse --abbrev-ref HEAD )
-    git checkout -- pants.ini
-    git checkout master
-    git fetch $remote
-    git pull --rebase $remote master
-    say "updated master"
-    git checkout "$branch"
-    git rebase master
-    say "updated branch"
-    set +x
-}
-alias guo="update_master_and_rebase origin"
-alias gu="update_master_and_rebase "
-
 find_file () {
 	if [ $# -eq 2 ]
   then
@@ -50,13 +32,25 @@ ffile_and_open () {
 }
 alias fo="ffile_and_open "
 
-alias ctags="`brew --prefix`/bin/ctags"
-
-alias metap="~/coursier launch org.scalameta::metap:3.7.4 -r sonatype:snapshots --"
-alias metac='~/coursier launch org.scalameta::metac:3.2.0 -r sonatype:snapshots -- -classpath $(coursier fetch org.scala-lang:scala-library:2.12.4 -p)'
-alias metacp='~/coursier launch org.scalameta::metacp:3.7.4 -r sonatype:snapshots --'
+update_master_and_rebase () {
+    set -x
+    remote=$1
+    branch=$( git rev-parse --abbrev-ref HEAD )
+    git checkout -- pants.ini
+    git checkout master
+    git fetch $remote
+    git pull --rebase $remote master
+    say "updated master"
+    git checkout "$branch"
+    git rebase master
+    say "updated branch"
+    set +x
+}
+alias guo="update_master_and_rebase origin"
+alias gu="update_master_and_rebase "
 
 alias gst='git status'
+alias gsto='git status -uno'
 alias gap='git add -p'
 alias ga='git add'
 alias gcm='git commit -m'
@@ -67,8 +61,12 @@ alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
 alias gph='git push origin head'
 
+# Editors
+
 alias emacst="emacsclient -t"
 alias emacsc="emacsclient -c &"
+
+alias v='nvim '
 
 # Silly things
 
