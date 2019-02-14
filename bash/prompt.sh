@@ -55,4 +55,4 @@ function get_emoji()  {
     echo "🐈✨"
   fi
 }
-export PS1='\[\033[0;36m\]\W\[\033[0m\]$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]") $(get_emoji) '
+export PS1='\[\033[0;36m\]\W\[\033[0m\]$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]") $(get_emoji) \n$ '
