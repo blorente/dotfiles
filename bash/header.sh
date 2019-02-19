@@ -1,4 +1,6 @@
 source ~/dotfiles/bash/git-branch/header.sh
+source ~/dotfiles/bash/rust.sh
+
 find_file () {
 	if [ $# -eq 2 ]
   then
