@@ -34,35 +34,6 @@ ffile_and_open () {
 }
 alias fo="ffile_and_open "
 
-update_master_and_rebase () {
-    set -x
-    remote=$1
-    branch=$( git rev-parse --abbrev-ref HEAD )
-    git checkout -- pants.ini
-    git checkout master
-    git fetch $remote
-    git pull --rebase $remote master
-    say "updated master"
-    git checkout "$branch"
-    git rebase master
-    say "updated branch"
-    set +x
-}
-alias guo="update_master_and_rebase origin"
-alias gu="update_master_and_rebase "
-
-alias gst='git status'
-alias gsto='git status -uno'
-alias gap='git add -p'
-alias ga='git add'
-alias gcm='git commit -m'
-alias gpull='git pull'
-alias gpush='git push'
-alias gl='git log --pretty=oneline'
-alias gg='git log --graph --decorate --oneline'
-alias gco='git checkout'
-alias gph='git push origin head'
-
 # Editors
 
 alias emacst="emacsclient -t"
@@ -78,9 +49,8 @@ do_timer () {
 }
 alias timer="do_timer"
 
-source ~/.git-completion.bash
-
 export ANSIBLE_COW_SELECTION=eyes
 
 PATH="$PATH:/home/blorente/.conscript/bin"
 source ~/dotfiles/bash/prompt.sh
+source ~/dotfiles/bash/git.sh

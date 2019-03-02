@@ -4,7 +4,7 @@
 
 syntax on " Syntax highlighting
 colorscheme dracula
-filetype plugin indent on
+"filetype plugin indent on
 set wrap " Wrap lines
 set ttyfast
 set mouse=a " Allow clicking with the mouse
@@ -13,8 +13,8 @@ set number " Show line numbers
 set incsearch
 set hlsearch
 set hidden " Don't force save on buffer switch
-set tabstop=4 " Show existing tab with 4 spaces width
-set expandtab " On pressing tab, insert 4 spaces
+set tabstop=2 " Show existing tab with 2 spaces width
+set expandtab " On pressing tab, insert 2 spaces
 
 """"""""""""""""""""
 " Keymaps
