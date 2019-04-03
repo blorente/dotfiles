@@ -40,7 +40,7 @@ alias emacst="emacsclient -t"
 alias emacsc="emacsclient -c &"
 
 alias v='nvim '
-
+alias c='code '
 # Silly things
 
 alias train="while : ; do sl -a ; done"
@@ -54,3 +54,4 @@ export ANSIBLE_COW_SELECTION=eyes
 PATH="$PATH:/home/blorente/.conscript/bin"
 source ~/dotfiles/bash/prompt.sh
 source ~/dotfiles/bash/git.sh
+source ~/dotfiles/bash/pants.sh
