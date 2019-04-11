@@ -5,7 +5,7 @@ update_master_and_rebase () {
     git checkout -- pants.ini
     git checkout master
     git fetch $remote
-    git pull --rebase $remote master
+    git pull --ff-only $remote master
     say "updated master"
     git checkout "$branch"
     git rebase master
@@ -34,3 +34,28 @@ function open_with_hub() {
   hub browse -- issues/$1 
 }
 alias hub_open='open_with_hub '
+
+function save_wip() {
+  (
+  set -x
+  git add .
+  head=$(git log -1 --format=%s)
+  if [[ "${head}" == "WIP" ]]; then
+    git commit --amend --no-edit -n
+  else
+    git commit -m "WIP" -n
+  fi
+  )
+}
+alias gwip='save_wip '
+
+function restore_wip() {
+  (
+  set -x
+  head=$(git log -1 --format=%s)
+  if [[ "${head}" == "WIP" ]]; then
+    git reset head^
+  fi
+  )
+}
+alias gunwip='restore_wip '
