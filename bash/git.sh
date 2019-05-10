@@ -31,6 +31,7 @@ alias gph='git push origin head'
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
 
 source ~/.git-completion.bash
+source ~/.git-completion.bash
 
 function open_with_hub() {
   hub browse -- issues/$1 

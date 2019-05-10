@@ -1,6 +1,3 @@
-source ~/dotfiles/bash/git-branch/header.sh
-source ~/dotfiles/bash/rust.sh
-
 find_file () {
 	if [ $# -eq 2 ]
   then
@@ -55,3 +52,4 @@ PATH="$PATH:/home/blorente/.conscript/bin"
 source ~/dotfiles/bash/prompt.sh
 source ~/dotfiles/bash/git.sh
 source ~/dotfiles/bash/pants.sh
+source ~/dotfiles/bash/rust.sh
