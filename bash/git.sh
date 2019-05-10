@@ -28,6 +28,8 @@ alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
 alias gph='git push origin head'
 
+alias git_branch_changes='git diff "$(git merge-base master head)"..head'
+
 source ~/.git-completion.bash
 
 function open_with_hub() {
@@ -59,3 +61,18 @@ function restore_wip() {
   )
 }
 alias gunwip='restore_wip '
+
+
+function backup_and_delete() {
+  (
+  set -x
+  cur_branch=$(git branch | grep \* | cut -d ' ' -f2)
+  backup_branch=$(echo "blorente/backups/${cur_branch}")
+  if [[ $(git branch | grep "${backup_branch}" | wc -l) -eq 1 ]]; then
+    git branch -D "${backup_branch}"
+  fi
+  git checkout -b "${backup_branch}"
+  git branch -D "${cur_branch}"
+  )
+}
+alias git_override_backup="backup_and_delete "
