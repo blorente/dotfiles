@@ -67,6 +67,7 @@ alias gunwip='restore_wip '
 function backup_and_delete() {
   (
   set -x
+  save_wip
   cur_branch=$(git branch | grep \* | cut -d ' ' -f2)
   backup_branch=$(echo "blorente/backups/${cur_branch}")
   if [[ $(git branch | grep "${backup_branch}" | wc -l) -eq 1 ]]; then
@@ -74,6 +75,8 @@ function backup_and_delete() {
   fi
   git checkout -b "${backup_branch}"
   git branch -D "${cur_branch}"
+  git checkout master
+  git checkout -b "${cur_branch}"
   )
 }
 alias git_override_backup="backup_and_delete "
