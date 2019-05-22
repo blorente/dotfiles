@@ -15,3 +15,5 @@ function _pantsd_watch() {
         watch -n0.3 'ps aux | grep "pantsd.* \[$( pwd )\] \| pantsd-runner \[" | grep -v watch | grep -v tail | grep -v grep'
 }
 alias pantsd_watch="_pantsd_watch"
+
+alias pantsd="./pants --enable-pantsd "
