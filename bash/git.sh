@@ -80,3 +80,6 @@ function backup_and_delete() {
   )
 }
 alias git_override_backup="backup_and_delete "
+
+
+alias git_paste="git commit --amend --no-edit "
