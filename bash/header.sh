@@ -53,3 +53,4 @@ source ~/dotfiles/bash/prompt.sh
 source ~/dotfiles/bash/git.sh
 source ~/dotfiles/bash/pants.sh
 source ~/dotfiles/bash/rust.sh
+source ~/dotfiles/bash/nyan/header.sh
