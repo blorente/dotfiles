@@ -29,6 +29,8 @@ alias gco='git checkout'
 alias gph='git push origin head'
 
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
+alias git_branch_log='git log "$(git merge-base master head)"..head'
+alias git_branch_log_pretty='git log --graph --decorate --oneline "$(git merge-base master head)"..head'
 
 source ~/.git-completion.bash
 source ~/.git-completion.bash
@@ -81,5 +83,5 @@ function backup_and_delete() {
 }
 alias git_override_backup="backup_and_delete "
 
-
 alias git_paste="git commit --amend --no-edit "
+alias git_create_empty='git commit -m "Empty commit to trigger Travis" --allow-empty -n '
