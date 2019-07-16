@@ -7,7 +7,7 @@ colorscheme dracula
 "filetype plugin indent on
 set wrap " Wrap lines
 set ttyfast
-set mouse=a " Allow clicking with the mouse
+set mouse= " Allow clicking with the mouse
 set laststatus=2
 set number " Show line numbers
 set incsearch
