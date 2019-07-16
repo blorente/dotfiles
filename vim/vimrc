@@ -54,5 +54,7 @@ call plug#begin('~/.vim/my_plugins')
 Plug 'jremmen/vim-ripgrep'
 " Dracula theme
 Plug 'dracula/vim', { 'as': 'dracula' }
+" Ctrl-P - Find files easily
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
