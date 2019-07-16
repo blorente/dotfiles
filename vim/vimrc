@@ -40,8 +40,9 @@ nmap <Leader>9 :9b<cr>
 " Easier : (Leader+;)
 nmap <Leader><Leader> :
 
-" Convenience for escape
-inoremap <C-v> <Esc>:w <cr>
+" Cycle through buffers
+:nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
+:nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
 
 """"""""""""""""""""
 " Plugins
