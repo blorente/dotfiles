@@ -47,6 +47,7 @@ do_timer () {
 alias timer="do_timer"
 
 export ANSIBLE_COW_SELECTION=eyes
+export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
 PATH="$PATH:/home/blorente/.conscript/bin"
 source ~/dotfiles/bash/prompt.sh

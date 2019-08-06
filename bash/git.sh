@@ -31,6 +31,12 @@ alias gph='git push origin head'
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
 alias git_branch_log='git log "$(git merge-base master head)"..head'
 alias git_branch_log_pretty='git log --graph --decorate --oneline "$(git merge-base master head)"..head'
+function git_branch_select {
+  git for-each-ref --sort=-committerdate refs/heads/ \
+      --format="%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))" \
+      | fzf --ansi -n1 | perl -plane 's/(\s|\*)*(\S+).*/$2/' | xargs git checkout
+}
+alias gbs='git_branch_select'
 
 source ~/.git-completion.bash
 source ~/.git-completion.bash
