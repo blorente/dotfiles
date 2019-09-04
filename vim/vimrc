@@ -26,8 +26,9 @@ call plug#begin('~/.vim/my_plugins')
 Plug 'jremmen/vim-ripgrep'
 " Dracula theme
 Plug 'dracula/vim', { 'as': 'dracula' }
-" Ctrl-P - Find files easily
-Plug 'ctrlpvim/ctrlp.vim'
+" fzf - Find files easily
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Language Server Client
 Plug 'autozimu/LanguageClient-neovim', {
@@ -64,6 +65,9 @@ nmap <Leader><Leader> :
 " Cycle through buffers
 :nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
 :nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
+
+" Map fzf to Ctrl-P
+:nnoremap <C-p> :GFiles<CR>
 
 """"""""""""""""""""
 " Language Server
