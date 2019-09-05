@@ -69,6 +69,9 @@ nmap <Leader><Leader> :
 " Map fzf to Ctrl-P
 :nnoremap <C-p> :GFiles<CR>
 
+" Map Rg for easy access
+:nnoremap <C-S-f> :Rg 
+
 """"""""""""""""""""
 " Language Server
 """"""""""""""""""""
