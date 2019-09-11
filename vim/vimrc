@@ -72,6 +72,10 @@ nmap <Leader><Leader> :
 " Map Rg for easy access
 :nnoremap <C-S-f> :Rg 
 
+" Map :W to :w. This is annoying
+:command W w
+:command Q q
+
 """"""""""""""""""""
 " Language Server
 """"""""""""""""""""
