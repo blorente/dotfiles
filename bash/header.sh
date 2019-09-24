@@ -5,7 +5,6 @@ alias emacst="emacsclient -t"
 alias emacsc="emacsclient -c &"
 
 alias v='nvim '
-alias c='code '
 
 # Silly things
 
