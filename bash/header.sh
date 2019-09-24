@@ -22,6 +22,11 @@ export ANSIBLE_COW_SELECTION=eyes
 alias fo='v $(fzf) '
 export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
+# Reload headers
+alias reload_term="source ~/tconfig"
+
+# Imports
+
 PATH="$PATH:/home/blorente/.conscript/bin"
 source ~/dotfiles/bash/prompt.sh
 source ~/dotfiles/bash/git.sh
