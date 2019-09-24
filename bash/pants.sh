@@ -42,3 +42,5 @@ function _launch_dockerized_pants() {
   )
 }
 alias dockerized_pants="_launch_dockerized_pants $(pwd) "
+
+alias pants_run_binary="(cd $OS_PANTS_SRC/src/rust/engine && ../../../build-support/bin/native/cargo.sh run -p )"
