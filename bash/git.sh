@@ -91,3 +91,14 @@ alias git_override_backup="backup_and_delete "
 
 alias git_paste="git commit --amend --no-edit "
 alias git_create_empty='git commit -m "Empty commit to trigger Travis" --allow-empty -n '
+
+function _do_gh_clone() {
+  (
+  repo=$1
+  reponame=$(echo ${repo} | awk -F"/" '{print $4"/"$5}')
+  dest="${HOME}/github/$reponame"
+  set -ex
+  git clone ${repo} ${dest}
+  )
+}
+alias gh_clone="_do_gh_clone "
