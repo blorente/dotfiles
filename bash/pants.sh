@@ -37,8 +37,9 @@ function _launch_dockerized_pants() {
   pants_location=$1
   docker_image=$2
   cd "${pants_location}"
-  build_hash=$( docker build "build-support/docker/${docker_image}" | tail -n 1 | awk '{print $3}' )
-  docker run  -v $(realpath "${pants_location}"):/pants -v ~/.cache/pants:/home/.cache/pants  -it "${build_hash}" /bin/bash
+#  build_hash=$( docker build "build-support/docker/${docker_image}" | tail -n 1 | awk '{print $3}' )
+  
+  docker run  -v $(realpath "${pants_location}"):/pants -v ~/.cache/pants:/home/.cache/pants  -it "pantsbuild/centos7:latest" /bin/bash
   )
 }
 alias dockerized_pants="_launch_dockerized_pants $(pwd) "

@@ -16,6 +16,14 @@ alias guo="update_master_and_rebase origin"
 alias guu="update_master_and_rebase upstream"
 alias gu="update_master_and_rebase "
 
+function git_safe_pull () {
+  repo=${1:-origin}
+  git pull --ff-only $repo $@
+}
+alias gsp="git_safe_pull "
+alias gspu="git_safe_pull upstream "
+alias gspo="git_safe_pull origin "
+
 alias gst='git status'
 alias gsto='git status -uno'
 alias gap='git add -p'
@@ -37,9 +45,6 @@ function git_branch_select {
       | fzf --ansi -n1 | perl -plane 's/(\s|\*)*(\S+).*/$2/' | xargs git checkout
 }
 alias gbs='git_branch_select'
-
-source ~/.git-completion.bash
-source ~/.git-completion.bash
 
 function open_with_hub() {
   hub browse -- issues/$1 
