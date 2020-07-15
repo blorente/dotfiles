@@ -34,3 +34,4 @@ source ~/dotfiles/bash/rust.sh
 source ~/dotfiles/bash/nyan/header.sh
 source ~/dotfiles/bash/gamer_run/gamer_run.sh
 source ~/dotfiles/bash/jars.sh
+source ~/dotfiles/bash/bazel.sh
