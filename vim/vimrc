@@ -16,6 +16,11 @@ set hidden " Don't force save on buffer switch
 set tabstop=2 " Show existing tab with 2 spaces width
 set expandtab " On pressing tab, insert 2 spaces
 
+set foldmethod=indent " Fold all code based on indent
+set foldenable " Fold all files automatically on open
+set foldnestmax=5 " Nest a maximum of 5 times
+set shiftwidth=2 " Fold starting from 2 spaces
+
 """"""""""""""""""""
 " Plugins
 """"""""""""""""""""
