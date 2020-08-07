@@ -38,6 +38,9 @@ Plug 'junegunn/fzf.vim'
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Install Nerdtree
+Plug 'preservim/nerdtree'
+
 call plug#end()
 
 """"""""""""""""""""
@@ -46,6 +49,9 @@ call plug#end()
 
 " Leader aliases for buffer navigation
 let mapleader = " "
+
+" Open Nerdtree
+map <Leader>t :NERDTreeToggle<CR>
 
 " List buffers
 nmap <Leader>l :ls <cr>
