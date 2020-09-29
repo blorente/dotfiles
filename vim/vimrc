@@ -35,6 +35,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Install CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+
 " Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -53,9 +56,14 @@ let mapleader = " "
 " Open Nerdtree
 map <Leader>t :NERDTreeToggle<CR>
 
+" Map fzf to Leader-f
+:nnoremap <Leader>f :GitFiles<CR>
+
 " List buffers
 nmap <Leader>l :ls <cr>
 
+" Save with Leader s
+:nnoremap <Leader>s :w<CR>
 " Switch Buffer
 nmap <Leader>1 :1b<cr>
 nmap <Leader>2 :2b<cr>
@@ -73,9 +81,6 @@ nmap <Leader><Leader> :
 " Cycle through buffers
 :nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
 :nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
-
-" Map fzf to Ctrl-P
-:nnoremap <C-p> :GFiles<CR>
 
 " Map Rg for easy access
 :nnoremap <C-S-f> :Rg 
