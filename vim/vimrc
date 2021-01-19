@@ -10,6 +10,7 @@ set ttyfast
 set mouse= " Allow clicking with the mouse
 set laststatus=2
 set number " Show line numbers
+set relativenumber
 set incsearch
 set hlsearch
 set hidden " Don't force save on buffer switch
