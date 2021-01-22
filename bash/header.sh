@@ -19,6 +19,7 @@ export ANSIBLE_COW_SELECTION=eyes
 # FZF things
 
 alias fo='v $(fzf) '
+alias vfzf='v $(fzf) '
 export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
 # Reload headers
