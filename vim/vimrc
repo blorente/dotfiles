@@ -45,11 +45,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Install Nerdtree
 Plug 'preservim/nerdtree'
 
-" YCM
-Plug 'Valloric/YouCompleteMe'
-
-" vim-resize for smart window resizing
-Plug 'git@github.com:breuckelen/vim-resize.git'
+" Fancy status lines
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -85,37 +83,17 @@ nmap <Leader>7 :7b<cr>
 nmap <Leader>8 :8b<cr>
 nmap <Leader>9 :9b<cr>
 
-" Easier : (Leader+;)
-nmap <Leader><Leader> :
+" Close buffer
+:nnoremap <Leader>c :bd<CR>
 
 " Cycle through buffers
-:nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
-:nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
+:nnoremap <Leader><Leader> :bnext<CR>:redraw<CR>:ls<CR>
+
+:nnoremap <Leader><Tab> :bnext<CR>:redraw<CR>:ls<CR>
+
+:nnoremap <Leader><S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
 
 " Map Rg for easy access
 :nnoremap <C-S-f> :Rg 
 
 """""""""""""""""""""
-" Window Resizing
-"""""""""""""""""""""
-let g:vim_resize_disable_auto_mappings = 1
-nnoremap <silent> <c-Y> :CmdResizeLeft<cr>
-nnoremap <silent> <c-U> :CmdResizeDown<cr>
-nnoremap <silent> <c-I> :CmdResizeUp<cr>
-nnoremap <silent> <c-O> :CmdResizeRight<cr>
-
-"""""""""""""""""""""
-" Completion
-"""""""""""""""""""""
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
