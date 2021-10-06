@@ -8,19 +8,17 @@ do_timer () {
 alias timer="do_timer"
 
 # FZF things
-alias fo='v $(fzf) '
-alias vfzf='v $(fzf) '
-export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
 # Reload headers
 alias reload_term="source ~/.zshrc"
 
-# Imports
+# Easy access to dotfiles
+alias godot="cd $HOME/dotfiles"
 
+# Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
-source ~/dotfiles/bash/prompt.sh
-source ~/dotfiles/bash/git.sh
-source ~/dotfiles/bash/pants.sh
-source ~/dotfiles/bash/rust.sh
-source ~/dotfiles/bash/jars.sh
-source ~/dotfiles/bash/bazel.sh
+source "$HOME/dotfiles/aliases/prompt.sh"
+source "$HOME/dotfiles/aliases/git.sh"
+source "$HOME/dotfiles/aliases/pants.sh"
+source "$HOME/dotfiles/aliases/jars.sh"
+source "$HOME/dotfiles/aliases/bazel.sh"
