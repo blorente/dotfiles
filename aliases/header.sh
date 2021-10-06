@@ -1,29 +1,19 @@
-
-# Editors
-
-alias emacst="emacsclient -t"
-alias emacsc="emacsclient -c &"
-
 alias v='nvim '
 
 # Silly things
-
 alias train="while : ; do sl -a ; done"
 do_timer () {
  termdown --font banner3 --no-seconds --alt-format --title "$2" $( expr 60 \* $1 )
 }
 alias timer="do_timer"
 
-export ANSIBLE_COW_SELECTION=eyes
-
 # FZF things
-
 alias fo='v $(fzf) '
 alias vfzf='v $(fzf) '
 export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
 # Reload headers
-alias reload_term="source ~/tconfig"
+alias reload_term="source ~/.zshrc"
 
 # Imports
 
@@ -32,9 +22,5 @@ source ~/dotfiles/bash/prompt.sh
 source ~/dotfiles/bash/git.sh
 source ~/dotfiles/bash/pants.sh
 source ~/dotfiles/bash/rust.sh
-source ~/dotfiles/bash/nyan/header.sh
-source ~/dotfiles/bash/run_and_say.sh
 source ~/dotfiles/bash/jars.sh
 source ~/dotfiles/bash/bazel.sh
-source ~/dotfiles/bash/exa.sh
-
