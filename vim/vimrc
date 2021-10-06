@@ -3,7 +3,6 @@
 """"""""""""""""""""
 
 syntax on " Syntax highlighting
-colorscheme dracula
 set background=dark
 
 "filetype plugin indent on

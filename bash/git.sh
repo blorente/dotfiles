@@ -1,40 +1,40 @@
+alias g="git "
+
 update_master_and_rebase () {
     set -x
     remote=$1
-    branch=$( git rev-parse --abbrev-ref HEAD )
-    git checkout -- pants.ini
-    git checkout master
+    branch=$(git rev-parse --abbrev-ref HEAD )
+    main=${2:-master}
+    git stash
+    git checkout "$main"
     git fetch $remote
-    git pull --ff-only $remote master
-    say "updated master"
+    git pull --ff-only $remote "$main"
+    say "updated main brancH"
     git checkout "$branch"
-    git rebase master
-    say "updated branch"
+    git rebase "$main"
+    res=$?
+    if [[ res == 0 ]] ; then
+      git stash pop
+      say "updated branch"
+    fi
     set +x
 }
 alias guo="update_master_and_rebase origin"
 alias guu="update_master_and_rebase upstream"
 alias gu="update_master_and_rebase "
 
-function git_safe_pull () {
-  repo=${1:-origin}
-  git pull --ff-only $repo $@
-}
-alias gsp="git_safe_pull "
-alias gspu="git_safe_pull upstream "
-alias gspo="git_safe_pull origin "
-
 alias gst='git status'
 alias gsto='git status -uno'
 alias gap='git add -p'
 alias ga='git add'
-alias gcm='git commit -m'
-alias gpull='git pull'
+alias gcm='git commit -m '
+alias gca='git commit --amend '
+alias gcan='git commit --amend --no-edit'
+alias gpull='git pull --ff-only'
 alias gpush='git push'
 alias gl='git log --pretty=oneline'
 alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
-alias gph='git push origin head'
 
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
 alias git_branch_log='git log "$(git merge-base master head)"..head'
