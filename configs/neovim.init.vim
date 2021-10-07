@@ -26,6 +26,9 @@ Plug 'vim-airline/vim-airline-themes'
 " Spaceduck theme
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 
+" Rainbow brackets
+Plug 'frazrepo/vim-rainbow'
+
 call plug#end()
 
 """"""""""""""""""""
@@ -50,4 +53,6 @@ endif
 colorscheme spaceduck
 let g:airline_theme = 'spaceduck'
 
+" Enable Rainbow Brackets globally
+let g:rainbow_active = 1
 
