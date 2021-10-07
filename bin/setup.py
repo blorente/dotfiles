@@ -17,7 +17,7 @@ repo_path: Path = Path(__file__).parent.parent
 config_root: Path = (repo_path / "configs").absolute()
 
 # Packages common to linux and macOS
-COMMON_PACKAGES: List[str] = [
+COMMON_SYSTEM_PACKAGES: List[str] = [
     "neovim",
     "zsh",
     "ripgrep",
@@ -29,8 +29,8 @@ COMMON_PACKAGES: List[str] = [
     "python3",
 ]
 
-BREW_PACKAGES: List[str] = COMMON_PACKAGES + []
-APT_PACKAGES: List[str] = COMMON_PACKAGES + []
+BREW_PACKAGES: List[str] = COMMON_SYSTEM_PACKAGES + []
+APT_PACKAGES: List[str] = COMMON_SYSTEM_PACKAGES + []
 PIP_PACKAGES: List[str] = ["click", "emoji"]
 
 
@@ -70,6 +70,10 @@ Brew = PackageInstaller(
 Pip = PackageInstaller(
     install_cmd_template="pip3 install {package}",
     check_cmd_template="pip list | grep -F {package}",
+)
+Apt = PackageInstaller(
+    install_cmd_template="sudo apt-get install {package}",
+    check_cmd_template="dpkg -l {package}",
 )
 
 
@@ -143,14 +147,27 @@ def ensure_config_files(filemap: Dict[str, ConfigFile]) -> List[str]:
     return failed_configs
 
 
+def ensure_system_agnostic_packages_installed():
+    failed_packages = []
+    failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
+    return failed_packages
+
+
 def main_linux():
     log.info("Setting up dotfiles for Linux")
+    failed_packages = ensure_packages_installed(APT_PACKAGES, Apt)
+    failes_packages = ensure_system_agnostic_packages_installed()
+    failed_configs = ensure_config_files(LINUX_CONFIG_FILES)
+    return {
+        "failed_packages": failed_packages,
+        "failed_configs": failed_configs,
+    }
 
 
 def main_macos():
     log.info("Setting up dotfiles for MacOS")
     failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
-    failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
+    failes_packages = ensure_system_agnostic_packages_installed()
     failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
 
     return {
