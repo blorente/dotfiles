@@ -32,7 +32,17 @@ Plug 'frazrepo/vim-rainbow'
 " Autoformatting
 Plug 'sbdchd/neoformat'
 
-call plug#end()
+" Plugin to enable commant shortcuts
+Plug 'preservim/nerdcommenter'
+
+call plug#end() 
+
+filetype plugin on
+
+""""""""""""""""""""
+" Plugins settings
+""""""""""""""""""""
+let g:NERDCreateDefaultMappings = 0 " Don't create default mappings, define our own below
 
 """"""""""""""""""""
 " Keybinds for Plugins
@@ -43,6 +53,9 @@ map <Leader>t :NERDTreeFind<CR>
 
 " Map fzf to Leader-f
 :nnoremap <Leader>f :GitFiles<CR>
+
+" Auto Commenter mappings
+:nnoremap <Leader>/ :call NERDComment(0, 'toggle')<CR> " Toggle comments in current line
 
 """"""""""""""""""""
 " Plugins augroup

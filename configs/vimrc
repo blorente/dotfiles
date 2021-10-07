@@ -31,6 +31,8 @@ set shiftwidth=2 " Fold starting from 2 spaces
 " Saving and Undo
 set noswapfile " Don't create the crap .swp files.
 
+filetype plugin on
+
 """"""""""""""""""""
 " Keymaps
 """"""""""""""""""""
