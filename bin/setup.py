@@ -16,31 +16,15 @@ log = logging.getLogger("dotfiles")
 repo_path: Path = Path(__file__).parent.parent
 config_root: Path = (repo_path / "configs").absolute()
 
-# Packages common to linux and macOS
-COMMON_SYSTEM_PACKAGES: List[str] = [
-    "neovim",
-    "zsh",
-    "ripgrep",
-    "htop",
-    "fzf",
-    "tree",
-    "tldr",
-    "tmux",
-    "python3",
-]
-
-BREW_PACKAGES: List[str] = COMMON_SYSTEM_PACKAGES + []
-APT_PACKAGES: List[str] = COMMON_SYSTEM_PACKAGES + []
-PIP_PACKAGES: List[str] = ["click", "emoji"]
-
 
 @dataclass
 class PackageInstaller:
+    name: str
     install_cmd_template: str
     check_cmd_template: str
+    add_source_template: str = None
 
-    def _run_cmd_for_package(cmd, package) -> subprocess.CompletedProcess:
-        f_cmd = cmd.format(package=package)
+    def _run_cmd(f_cmd) -> subprocess.CompletedProcess:
         log.trace(f"Running installer command: {f_cmd}")
         return subprocess.run(
             f_cmd,
@@ -49,32 +33,79 @@ class PackageInstaller:
             shell=True,
         )
 
-    def package_installed(self, package):
+    def package_installed(self, package: "SystemPackage"):
         log.debug(f"Checking if {package} is installed...")
         return (
-            PackageInstaller._run_cmd_for_package(
-                self.check_cmd_template, package
+            PackageInstaller._run_cmd(
+                self.check_cmd_template.format(package=package.name)
             ).returncode
             == 0
         )
 
-    def install_package(self, package):
+    def install_package(self, package: "SystemPackage"):
         log.debug(f"Installing {package}")
-        return PackageInstaller._run_cmd_for_package(self.install_cmd_template, package)
+        if package.sources and self.name in package.sources:
+            my_source = package.sources[self.name]
+            PackageInstaller._run_cmd(self.add_source_template.format(source=my_source))
+        if package.pre_install:
+            PackageInstaller._run_cmd(package.pre_install)
+        install_res = PackageInstaller._run_cmd(
+            self.install_cmd_template.format(package=package.name)
+        )
+        if package.post_install:
+            PackageInstaller._run_cmd(package.post_install)
+        return install_res
 
 
 Brew = PackageInstaller(
+    name="Brew",
     install_cmd_template="brew install {package}",
     check_cmd_template="brew list {package}",
+    add_source_template="brew tap {source}",
+)
+Apt = PackageInstaller(
+    name="Apt",
+    install_cmd_template="sudo apt-get install {package}",
+    check_cmd_template="dpkg -l {package}",
+    add_source_template="sudo add-apt-repository {source}; sudo apt-get update",
 )
 Pip = PackageInstaller(
+    name="Pip",
     install_cmd_template="pip3 install {package}",
     check_cmd_template="pip list | grep -F {package}",
 )
-Apt = PackageInstaller(
-    install_cmd_template="sudo apt-get install {package}",
-    check_cmd_template="dpkg -l {package}",
-)
+
+
+@dataclass
+class SystemPackage:
+    name: str
+    pre_install: str = None
+    post_install: str = None
+    sources: Dict[str, str] = None
+
+
+SP = lambda name: SystemPackage(name=name)
+
+
+# Packages common to linux and macOS
+COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
+    SystemPackage(name="neovim", sources={"Apt": "ppa:neovim-ppa/unstable"}),
+    SystemPackage(
+        name="zsh",
+        post_install="chsh -s $(which zsh)",
+    ),
+    SP("ripgrep"),
+    SP("htop"),
+    SP("fzf"),
+    SP("tldr"),
+    SP("tmux"),
+    SP("tree"),
+    SP("python3"),
+]
+
+BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
+APT_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
+PIP_PACKAGES: List[SystemPackage] = [SP("click"), SP("emoji")]
 
 
 @dataclass
@@ -108,15 +139,16 @@ def ensure_packages_installed(packages: List[str], installer: PackageInstaller):
     failed_packages = []
     for package in packages:
         if installer.package_installed(package):
-            log.info(f"-> Installed {package} [☑️ ]")
+            log.info(f"-> Installed {package.name} [☑️ ]")
         else:
             out = installer.install_package(package)
             if out.returncode == 0:
-                log.info(f"-> Installed {package} [✅]")
+                log.info(f"-> Installed {package.name} [✅]")
             else:
-                log.error(f"-> Error Installing {package} [❌]:\n{out}")
-                if not success:
-                    failed_packages.append(package)
+                log.error(
+                    f"-> Error Installing {package.name} [❌]:\nPackage: {package}\nOut: {out}"
+                )
+                failed_packages.append(package)
     return failed_packages
 
 
