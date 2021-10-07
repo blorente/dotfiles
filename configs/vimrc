@@ -2,53 +2,34 @@
 " Configuration
 """"""""""""""""""""
 
+" Overall look of the editor
 syntax on " Syntax highlighting
 set background=dark
-
-"filetype plugin indent on
-set wrap " Wrap lines
+set termguicolors
+set nowrap " Wrap lines
 set ttyfast
 set mouse= " Allow clicking with the mouse
 set laststatus=2
 set number " Show line numbers
-set relativenumber
+set relativenumber " Set line numbers to relative.
 set incsearch
 set hlsearch
 set hidden " Don't force save on buffer switch
 set tabstop=2 " Show existing tab with 2 spaces width
 set expandtab " On pressing tab, insert 2 spaces
+set nohlsearch " When done searching, don't keep things highlighted.
+set scrolloff=8 " Start scrolling 8 lines from the top/bottom, instead of the very bottom.
+set cmdheight=2 " Two lines for command output.
+set signcolumn=yes " Show a column at before line numbers, for git and LSP messages and stuff.
 
+" Folding
 set foldmethod=indent " Fold all code based on indent
 set foldenable " Fold all files automatically on open
 set foldnestmax=5 " Nest a maximum of 5 times
 set shiftwidth=2 " Fold starting from 2 spaces
 
-""""""""""""""""""""
-" Plugins
-""""""""""""""""""""
-
-" For now we use vim-plug (https://github.com/junegunn/vim-plug)
-call plug#begin('~/.vim/my_plugins')
-" Ripgrep integration
-Plug 'jremmen/vim-ripgrep'
-" Dracula theme
-Plug 'dracula/vim', { 'as': 'dracula' }
-
-" fzf - Find files easily
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" Install CtrlP
-Plug 'ctrlpvim/ctrlp.vim'
-
-" Install Nerdtree
-Plug 'preservim/nerdtree'
-
-" Fancy status lines
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-call plug#end()
+" Saving and Undo
+set noswapfile " Don't create the crap .swp files.
 
 """"""""""""""""""""
 " Keymaps
@@ -56,12 +37,6 @@ call plug#end()
 
 " Leader aliases for buffer navigation
 let mapleader = " "
-
-" Open Nerdtree
-map <Leader>t :NERDTreeToggle<CR>
-
-" Map fzf to Leader-f
-:nnoremap <Leader>f :GitFiles<CR>
 
 " List buffers
 nmap <Leader>l :ls <cr>
@@ -95,4 +70,3 @@ nmap <Leader>9 :9b<cr>
 " Map Rg for easy access
 :nnoremap <C-S-f> :Rg 
 
-"""""""""""""""""""""
