@@ -33,7 +33,7 @@ call plug#end()
 """"""""""""""""""""
 
 " Open Nerdtree
-map <Leader>t :NERDTreeToggle<CR>
+map <Leader>t :NERDTreeFind<CR>
 
 " Map fzf to Leader-f
 :nnoremap <Leader>f :GitFiles<CR>
