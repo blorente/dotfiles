@@ -8,9 +8,6 @@ source ~/.vimrc
 
 " For now we use vim-plug (https://github.com/junegunn/vim-plug)
 call plug#begin('~/.vim/my_plugins')
-" Ripgrep integration
-Plug 'jremmen/vim-ripgrep'
-
 
 " Telescope for fuzzy finding
 Plug 'nvim-lua/plenary.nvim'
