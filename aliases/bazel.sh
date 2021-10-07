@@ -6,6 +6,7 @@ function maybe_dotslash_bazel() {
         fi
 }
 
+alias b="maybe_dotslash_bazel "
 alias bqb="maybe_dotslash_bazel query --output build "
 alias bb="maybe_dotslash_bazel build "
 alias bt="maybe_dotslash_bazel test "
