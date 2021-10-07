@@ -66,7 +66,7 @@ Brew = PackageInstaller(
 Apt = PackageInstaller(
     name="Apt",
     install_cmd_template="sudo apt-get -y install {package}",
-    check_cmd_template="dpkg -l {package}",
+    check_cmd_template="apt list | grep '^{package}/'",
     add_source_template="sudo add-apt-repository -y {source}; sudo apt-get update",
 )
 Pip = PackageInstaller(
