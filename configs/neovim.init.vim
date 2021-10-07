@@ -12,9 +12,11 @@ call plug#begin('~/.vim/my_plugins')
 Plug 'jremmen/vim-ripgrep'
 
 
-" fzf - Find files easily
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Telescope for fuzzy finding
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 
 " Install Nerdtree
 Plug 'preservim/nerdtree'
@@ -42,7 +44,22 @@ filetype plugin on
 """"""""""""""""""""
 " Plugins settings
 """"""""""""""""""""
+" Nerd Comment 
 let g:NERDCreateDefaultMappings = 0 " Don't create default mappings, define our own below
+
+" Telescope config
+lua <<EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      },
+    },
+  }
+}
+EOF
 
 """"""""""""""""""""
 " Keybinds for Plugins
@@ -51,8 +68,10 @@ let g:NERDCreateDefaultMappings = 0 " Don't create default mappings, define our 
 " Open Nerdtree
 map <Leader>t :NERDTreeFind<CR>
 
-" Map fzf to Leader-f
-:nnoremap <Leader>f :GitFiles<CR>
+" Finding files
+:noremap <Leader>ff :Telescope find_files<CR>
+:noremap <Leader>fb :Telescope buffers<CR>
+:noremap <Leader>fg :Telescope live_grep<CR>
 
 " Auto Commenter mappings
 :nnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line

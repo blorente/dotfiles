@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
+import argparse
+import json
+import logging
+import platform
+import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-import platform
-import logging
-from logging_utils import configure_logging, add_logging_to_arg_parser
-import subprocess
-import json
-import argparse
-from typing import List, Dict
+from typing import Dict, List
+
+from logging_utils import add_logging_to_arg_parser, configure_logging
 
 log = logging.getLogger("dotfiles")
 
@@ -25,10 +26,12 @@ COMMON_PACKAGES: List[str] = [
     "tree",
     "tldr",
     "tmux",
+    "python3",
 ]
 
 BREW_PACKAGES: List[str] = COMMON_PACKAGES + []
 APT_PACKAGES: List[str] = COMMON_PACKAGES + []
+PIP_PACKAGES: List[str] = ["click", "emoji"]
 
 
 @dataclass
@@ -37,14 +40,17 @@ class PackageInstaller:
     check_cmd_template: str
 
     def _run_cmd_for_package(cmd, package) -> subprocess.CompletedProcess:
+        f_cmd = cmd.format(package=package)
+        log.trace(f"Running installer command: {f_cmd}")
         return subprocess.run(
-            cmd.format(package=package),
+            f_cmd,
             capture_output=True,
             check=False,
             shell=True,
         )
 
     def package_installed(self, package):
+        log.debug(f"Checking if {package} is installed...")
         return (
             PackageInstaller._run_cmd_for_package(
                 self.check_cmd_template, package
@@ -53,12 +59,17 @@ class PackageInstaller:
         )
 
     def install_package(self, package):
+        log.debug(f"Installing {package}")
         return PackageInstaller._run_cmd_for_package(self.install_cmd_template, package)
 
 
 Brew = PackageInstaller(
     install_cmd_template="brew install {package}",
     check_cmd_template="brew list {package}",
+)
+Pip = PackageInstaller(
+    install_cmd_template="pip3 install {package}",
+    check_cmd_template="pip list | grep -F {package}",
 )
 
 
@@ -93,15 +104,13 @@ def ensure_packages_installed(packages: List[str], installer: PackageInstaller):
     failed_packages = []
     for package in packages:
         if installer.package_installed(package):
-            log.info(f"-> Installed {package} [Cached]")
+            log.info(f"-> Installed {package} [☑️ ]")
         else:
-            success = install_package(package, installer)
             out = installer.install_package(package)
             if out.returncode == 0:
-                log.info(f"-> Installed {package} [NEW]")
-                return True
+                log.info(f"-> Installed {package} [✅]")
             else:
-                log.error(f"-> Error Installing {package}: {out}")
+                log.error(f"-> Error Installing {package} [❌]:\n{out}")
                 if not success:
                     failed_packages.append(package)
     return failed_packages
@@ -123,13 +132,13 @@ def ensure_config_files(filemap: Dict[str, ConfigFile]) -> List[str]:
                     )
                     failed_configs.append(name)
                 else:
-                    log.info(f"-> {name} OK [Cached]")
+                    log.info(f"-> {name} OK [☑️ ]")
             else:
                 log.error(f"Config file {config_file} exists, but is not a symlink.")
                 failed_configs.append(name)
         else:
             in_system.symlink_to(in_repo)
-            log.info(f"-> {name} OK [NEW]")
+            log.info(f"-> {name} OK [✅]")
 
     return failed_configs
 
@@ -141,6 +150,7 @@ def main_linux():
 def main_macos():
     log.info("Setting up dotfiles for MacOS")
     failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
+    failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
     failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
 
     return {
