@@ -55,7 +55,8 @@ map <Leader>t :NERDTreeFind<CR>
 :nnoremap <Leader>f :GitFiles<CR>
 
 " Auto Commenter mappings
-:nnoremap <Leader>/ :call NERDComment(0, 'toggle')<CR> " Toggle comments in current line
+:nnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line
+:vnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line
 
 """"""""""""""""""""
 " Plugins augroup
