@@ -65,7 +65,7 @@ Brew = PackageInstaller(
 )
 Apt = PackageInstaller(
     name="Apt",
-    install_cmd_template="sudo apt-get install {package}",
+    install_cmd_template="sudo apt-get -y install {package}",
     check_cmd_template="dpkg -l {package}",
     add_source_template="sudo add-apt-repository -y {source}; sudo apt-get update",
 )
@@ -226,7 +226,10 @@ def main(args):
         log.info("🍎 MacOS found")
         install_result = main_macos()
 
-    print(json.dumps(install_result))
+    if not install_result["failed_packages"] and not install_result["failed_configs"]:
+        log.info("✨ All done! ✨")
+    else:
+        print(json.dumps(install_result))
 
 
 if __name__ == "__main__":
