@@ -29,6 +29,9 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 " Rainbow brackets
 Plug 'frazrepo/vim-rainbow'
 
+" Autoformatting
+Plug 'sbdchd/neoformat'
+
 call plug#end()
 
 """"""""""""""""""""
@@ -40,6 +43,15 @@ map <Leader>t :NERDTreeFind<CR>
 
 " Map fzf to Leader-f
 :nnoremap <Leader>f :GitFiles<CR>
+
+""""""""""""""""""""
+" Plugins augroup
+""""""""""""""""""""
+" Autoformat buffers on write with Neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 """"""""""""""""""""
 " Color Scheme
