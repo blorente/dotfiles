@@ -67,7 +67,7 @@ Apt = PackageInstaller(
     name="Apt",
     install_cmd_template="sudo apt-get install {package}",
     check_cmd_template="dpkg -l {package}",
-    add_source_template="sudo add-apt-repository {source}; sudo apt-get update",
+    add_source_template="sudo add-apt-repository -y {source}; sudo apt-get update",
 )
 Pip = PackageInstaller(
     name="Pip",
