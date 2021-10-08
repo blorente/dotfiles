@@ -17,7 +17,7 @@ alias godot="cd $HOME/dotfiles"
 
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
-source "$HOME/dotfiles/aliases/prompt.sh"
+source "$HOME/dotfiles/aliases/light_prompt.sh"
 source "$HOME/dotfiles/aliases/git.sh"
 source "$HOME/dotfiles/aliases/pants.sh"
 source "$HOME/dotfiles/aliases/jars.sh"
