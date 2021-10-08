@@ -71,7 +71,7 @@ map <Leader>t :NERDTreeFind<CR>
 :noremap <Leader>fg :Telescope live_grep<CR>
 
 " Auto Commenter mappings
-:nnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line
+:nnoremap <Leader>/ :call nerdcommenter#Comment('n', 'toggle')<CR> " Toggle comments in current line
 :vnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line
 
 """"""""""""""""""""
