@@ -37,10 +37,13 @@ class PackageInstaller:
         log.debug(f"Checking if {package} is installed...")
         return (
             PackageInstaller._run_cmd(
-                self.check_cmd_template.format(package=package.name)
+                PackageInstaller._format_template(self.check_cmd_template, package)
             ).returncode
             == 0
         )
+
+    def _format_template(template: str, pkg: "SystemPackage") -> str:
+        return template.format_map({"name": pkg.name, "package": pkg.package})
 
     def install_package(self, package: "SystemPackage"):
         log.debug(f"Installing {package}")
@@ -50,7 +53,7 @@ class PackageInstaller:
         if package.pre_install:
             PackageInstaller._run_cmd(package.pre_install)
         install_res = PackageInstaller._run_cmd(
-            self.install_cmd_template.format(package=package.name)
+            PackageInstaller._format_template(self.install_cmd_template, package)
         )
         if package.post_install:
             PackageInstaller._run_cmd(package.post_install)
@@ -74,24 +77,33 @@ Pip = PackageInstaller(
     install_cmd_template="pip3 install {package}",
     check_cmd_template="pip list | grep -F {package}",
 )
+Freeform = PackageInstaller(
+    name="Freeform",
+    install_cmd_template="/bin/bash -c '{package}' && echo '{name}' >> ~/.freeform.installed",
+    check_cmd_template="cat ~/.installed | grep {name}",
+)
 
 
 @dataclass
 class SystemPackage:
     name: str
+    package: str
     pre_install: str = None
     post_install: str = None
     sources: Dict[str, str] = None
 
 
-SP = lambda name: SystemPackage(name=name)
+SP = lambda name: SystemPackage(name=name, package=name)
 
 
 # Packages common to linux and macOS
 COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
-    SystemPackage(name="neovim", sources={"Apt": "ppa:neovim-ppa/unstable"}),
+    SystemPackage(
+        name="neovim", package="neovim", sources={"Apt": "ppa:neovim-ppa/unstable"}
+    ),
     SystemPackage(
         name="zsh",
+        package="zsh",
         post_install="chsh -s $(which zsh)",
     ),
     SP("ripgrep"),
@@ -106,6 +118,12 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
 APT_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
 PIP_PACKAGES: List[SystemPackage] = [SP("click"), SP("emoji")]
+FREEFORM_PACKAGES: List[SystemPackage] = [
+    SystemPackage(
+        name="powerlevel10k",
+        package="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k",
+    )
+]
 
 
 @dataclass
@@ -181,6 +199,7 @@ def ensure_config_files(filemap: Dict[str, ConfigFile]) -> List[str]:
 
 def ensure_system_agnostic_packages_installed():
     failed_packages = []
+    failed_packages += ensure_packages_installed(FREEFORM_PACKAGES, Freeform)
     failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
     return failed_packages
 
