@@ -147,6 +147,10 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_system_home_location=Path("completions.zsh"),
         in_repo_location=Path("zsh_completions"),
     ),
+    "p10k": ConfigFile(
+        in_system_home_location=Path(".p10k.zsh"),
+        in_repo_location=Path("p10k.zsh"),
+    ),
 }
 
 MACOS_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
