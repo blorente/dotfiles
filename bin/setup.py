@@ -99,7 +99,10 @@ SP = lambda name: SystemPackage(name=name, package=name)
 # Packages common to linux and macOS
 COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
-        name="neovim", package="neovim", sources={"Apt": "ppa:neovim-ppa/unstable"}
+        name="neovim",
+        package="neovim",
+        sources={"Apt": "ppa:neovim-ppa/unstable"},
+        post_install="nvim --headless +PlugInstall +'TSInstall all' +qa",
     ),
     SystemPackage(
         name="zsh",
@@ -122,7 +125,11 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="powerlevel10k",
         package="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k",
-    )
+    ),
+    SystemPackage(
+        name="vim-plug (nvim)",
+        package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+    ),
 ]
 
 
@@ -201,17 +208,25 @@ def ensure_config_files(filemap: Dict[str, ConfigFile]) -> List[str]:
     return failed_configs
 
 
-def ensure_system_agnostic_packages_installed():
+def ensure_freeform_packages_installed():
     failed_packages = []
     failed_packages += ensure_packages_installed(FREEFORM_PACKAGES, Freeform)
+    return failed_packages
+
+
+def ensure_language_packages_installed():
+    failed_packages = []
     failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
     return failed_packages
 
 
 def main_linux():
     log.info("Setting up dotfiles for Linux")
-    failed_packages = ensure_packages_installed(APT_PACKAGES, Apt)
-    failes_packages = ensure_system_agnostic_packages_installed()
+    failed_packages = []
+    failed_packages += ensure_freeform_packages_installed()
+    failed_packages += ensure_packages_installed(APT_PACKAGES, Apt)
+    failed_packages += ensure_language_packages_installed()
+
     failed_configs = ensure_config_files(LINUX_CONFIG_FILES)
     return {
         "failed_packages": failed_packages,
@@ -221,8 +236,11 @@ def main_linux():
 
 def main_macos():
     log.info("Setting up dotfiles for MacOS")
+    failed_packages = []
+    failed_packages += ensure_freeform_packages_installed()
     failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
-    failes_packages = ensure_system_agnostic_packages_installed()
+    failed_packages += ensure_language_packages_installed()
+
     failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
 
     return {

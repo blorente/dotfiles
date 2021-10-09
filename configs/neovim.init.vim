@@ -24,6 +24,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Spaceduck theme
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
+Plug 'bluz71/vim-moonfly-colors'
 
 " Rainbow brackets
 Plug 'frazrepo/vim-rainbow'
@@ -34,6 +35,11 @@ Plug 'sbdchd/neoformat'
 " Plugin to enable commant shortcuts
 Plug 'preservim/nerdcommenter'
 
+" Get a terminal inside nvim
+Plug 'akinsho/toggleterm.nvim'
+
+" Treesitter, mainly for better syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end() 
 
 filetype plugin on
@@ -58,12 +64,64 @@ require('telescope').setup{
 }
 EOF
 
+" Treesitter config
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+" Toggleterm config
+lua <<EOF
+require("toggleterm").setup{
+  open_mapping = [[<C-s>]],
+  hide_numbers = true, -- hide the number column in toggleterm buffers
+  shade_filetypes = {},
+  shade_terminals = true,
+  shading_factor = '<number>', -- the degree by which to darken to terminal colour, default: 1 for dark backgrounds, 3 for light
+  start_in_insert = true,
+  insert_mappings = true, -- whether or not the open mapping applies in insert mode
+  persist_size = true,
+  direction = 'float',
+  close_on_exit = true, -- close the terminal window when the process exits
+  shell = vim.o.shell, -- change the default shell
+  -- This field is only relevant if direction is set to 'float'
+  float_opts = {
+    -- The border key is *almost* the same as 'nvim_open_win'
+    -- see :h nvim_open_win for details on borders however
+    -- the 'curved' border is a custom border type
+    -- not natively supported but implemented in this plugin.
+    -- border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+    border = 'double',
+    winblend = 3,
+    highlights = {
+      border = "Normal",
+      background = "Normal",
+    }
+  }
+}
+EOF
+
 """"""""""""""""""""
 " Keybinds for Plugins
 """"""""""""""""""""
 
 " Open Nerdtree
-map <Leader>t :NERDTreeFind<CR>
+map <Leader>tf :NERDTreeFind<CR>
+map <Leader>tt :NERDTreeToggle<CR>
 
 " Finding files
 :noremap <Leader>ff :Telescope find_files<CR>
@@ -92,8 +150,8 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme spaceduck
-let g:airline_theme = 'spaceduck'
+colorscheme moonfly
+let g:airline_theme = 'moonfly'
 
 " Enable Rainbow Brackets globally
 let g:rainbow_active = 1
