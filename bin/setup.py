@@ -104,7 +104,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="zsh",
         package="zsh",
-        post_install="chsh -s $(which zsh)",
+        post_install="sudo chsh -s $(which zsh)",
     ),
     SP("ripgrep"),
     SP("htop"),
