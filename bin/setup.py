@@ -28,9 +28,10 @@ class PackageInstaller:
     name: str
     install_cmd_template: str
     check_cmd_template: str
-    add_source_template: str = None
+    add_source_template: str = ""
 
-    def _run_cmd(f_cmd) -> subprocess.CompletedProcess:
+    @staticmethod
+    def _run_cmd(f_cmd: str) -> subprocess.CompletedProcess:
         log.trace(f"Running installer command: {f_cmd}")
         return subprocess.run(
             f_cmd,
@@ -48,6 +49,7 @@ class PackageInstaller:
             == 0
         )
 
+    @staticmethod
     def _format_template(template: str, pkg: "SystemPackage") -> str:
         return template.format_map({"name": pkg.name, "package": pkg.package})
 
@@ -135,7 +137,7 @@ PIP_PACKAGES: List[SystemPackage] = [
     SP("click"),
     SP("emoji"),
 ]
-NPM_PACKAGES: List[SystemPackage] = [SP("pyright")]
+NPM_PACKAGES: List[SystemPackage] = [SP("pyright"), SP("pm2"), SP("netlify")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="powerlevel10k",
