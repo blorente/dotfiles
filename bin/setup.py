@@ -1,5 +1,11 @@
 #!/usr/bin/env python3.9
 
+"""
+TODO
+- [ ] Make post and pre install be a list of actions, which can be either scripts, or config files.
+- [ ] Mark pre-post installs as failures as well.
+"""
+
 import argparse
 import json
 import logging
@@ -74,13 +80,18 @@ Apt = PackageInstaller(
 )
 Pip = PackageInstaller(
     name="Pip",
-    install_cmd_template="pip3 install {package}",
+    install_cmd_template="sudo pip3 install {package}",
     check_cmd_template="pip list | grep -F {package}",
 )
 Freeform = PackageInstaller(
     name="Freeform",
     install_cmd_template="/bin/bash -c '{package}' && echo '{name}' >> ~/.freeform.installed",
-    check_cmd_template="cat ~/.installed | grep {name}",
+    check_cmd_template="cat ~/.freeform.installed | grep {name}",
+)
+Npm = PackageInstaller(
+    name="Npm",
+    install_cmd_template="npm install -g {package}",
+    check_cmd_template="npm list -g {package}",
 )
 
 
@@ -120,15 +131,28 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
 
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
 APT_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
-PIP_PACKAGES: List[SystemPackage] = [SP("click"), SP("emoji")]
+PIP_PACKAGES: List[SystemPackage] = [
+    SP("click"),
+    SP("emoji"),
+]
+NPM_PACKAGES: List[SystemPackage] = [SP("pyright")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="powerlevel10k",
         package="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k",
     ),
     SystemPackage(
-        name="vim-plug (nvim)",
+        name="nvim-plug",
         package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+    ),
+    SystemPackage(
+        name="nvm+node",
+        package="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash",
+        post_install="nvm install 16",
+    ),
+    SystemPackage(
+        name="rustup+rust",
+        package="curl --proto '=https' --tlsv1.2 -sSf --output /tmp/rustup https://sh.rustup.rs && chmod +x /tmp/rustup && /tmp/rustup -y",
     ),
 ]
 
@@ -164,7 +188,10 @@ MACOS_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
 LINUX_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
 
 
-def ensure_packages_installed(packages: List[str], installer: PackageInstaller):
+def ensure_packages_installed(
+    packages: List[SystemPackage], installer: PackageInstaller
+):
+    log.info(f"Ensuring packages installed for {installer.name}")
     failed_packages = []
     for package in packages:
         if installer.package_installed(package):
@@ -217,17 +244,19 @@ def ensure_freeform_packages_installed():
 def ensure_language_packages_installed():
     failed_packages = []
     failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
+    failed_packages += ensure_packages_installed(NPM_PACKAGES, Npm)
     return failed_packages
 
 
 def main_linux():
     log.info("Setting up dotfiles for Linux")
+    failed_configs = ensure_config_files(LINUX_CONFIG_FILES)
+
     failed_packages = []
     failed_packages += ensure_freeform_packages_installed()
     failed_packages += ensure_packages_installed(APT_PACKAGES, Apt)
     failed_packages += ensure_language_packages_installed()
 
-    failed_configs = ensure_config_files(LINUX_CONFIG_FILES)
     return {
         "failed_packages": failed_packages,
         "failed_configs": failed_configs,
@@ -236,12 +265,12 @@ def main_linux():
 
 def main_macos():
     log.info("Setting up dotfiles for MacOS")
+    failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
+
     failed_packages = []
     failed_packages += ensure_freeform_packages_installed()
     failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
     failed_packages += ensure_language_packages_installed()
-
-    failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
 
     return {
         "failed_packages": failed_packages,
