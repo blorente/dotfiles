@@ -184,6 +184,10 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_system_home_location=Path(".p10k.zsh"),
         in_repo_location=Path("p10k.zsh"),
     ),
+    "alacritty": ConfigFile(
+        in_system_home_location=Path(".config/alacritty/alacritty.yml"),
+        in_repo_location=Path("alacritty.yml"),
+    ),
 }
 
 MACOS_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
@@ -250,14 +254,17 @@ def ensure_language_packages_installed():
     return failed_packages
 
 
-def main_linux():
+def main_linux(args):
     log.info("Setting up dotfiles for Linux")
+    failed_packages = []
+    failed_configs = []
+
     failed_configs = ensure_config_files(LINUX_CONFIG_FILES)
 
-    failed_packages = []
-    failed_packages += ensure_freeform_packages_installed()
-    failed_packages += ensure_packages_installed(APT_PACKAGES, Apt)
-    failed_packages += ensure_language_packages_installed()
+    if not args.config_only:
+        failed_packages += ensure_freeform_packages_installed()
+        failed_packages += ensure_packages_installed(APT_PACKAGES, Apt)
+        failed_packages += ensure_language_packages_installed()
 
     return {
         "failed_packages": failed_packages,
@@ -265,14 +272,17 @@ def main_linux():
     }
 
 
-def main_macos():
+def main_macos(args):
     log.info("Setting up dotfiles for MacOS")
+    failed_packages = []
+    failed_configs = []
+
     failed_configs = ensure_config_files(MACOS_CONFIG_FILES)
 
-    failed_packages = []
-    failed_packages += ensure_freeform_packages_installed()
-    failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
-    failed_packages += ensure_language_packages_installed()
+    if not args.config_only:
+        failed_packages += ensure_freeform_packages_installed()
+        failed_packages = ensure_packages_installed(BREW_PACKAGES, Brew)
+        failed_packages += ensure_language_packages_installed()
 
     return {
         "failed_packages": failed_packages,
@@ -282,6 +292,9 @@ def main_macos():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="I want easy dotfiles.")
+    parser.add_argument(
+        "--config-only", action="store_true", help="only install config files"
+    )
     add_logging_to_arg_parser(parser)
     return parser.parse_args()
 
@@ -293,10 +306,10 @@ def main(args):
     install_result = None
     if system == "Linux":
         log.info("🐧 Linux found")
-        install_result = main_linux()
+        install_result = main_linux(args)
     elif system == "Darwin":
         log.info("🍎 MacOS found")
-        install_result = main_macos()
+        install_result = main_macos(args)
 
     if not install_result["failed_packages"] and not install_result["failed_configs"]:
         log.info("✨ All done! ✨")
