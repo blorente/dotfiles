@@ -188,6 +188,10 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_system_home_location=Path(".config/alacritty/alacritty.yml"),
         in_repo_location=Path("alacritty.yml"),
     ),
+    "tmux": ConfigFile(
+        in_system_home_location=Path(".tmux.conf"),
+        in_repo_location=Path("tmux.conf"),
+    ),
 }
 
 MACOS_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
