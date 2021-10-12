@@ -133,9 +133,36 @@ require("toggleterm").setup{
 EOF
 
 " LSP Config
+
+" Add bazel-lsp as a server
+lua <<EOF
+-- Configure bazel-lsp server, a heavily modified version of 
+--   https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/pyright.lua
+local configs = require 'lspconfig/configs'
+local util = require 'lspconfig/util'
+local bazel_lsp_name = 'bazel'
+local bazel_lsp_bin = 'bazel-lsp'
+
+configs[bazel_lsp_name] = {
+  default_config= {
+    cmd = {bazel_lsp_bin},
+    filetypes = {'bzl'},
+    root_dir = function(fname)
+       local root_files = {'WORKSPACE', 'workspace.bzl'}
+       return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+     end,
+     settings = {},
+   },
+   commands = {},
+   docs = {},
+}
+EOF
+
+" General LSP config
 lua <<EOF
 require'lspconfig'.pyright.setup{}
 
+vim.lsp.set_log_level("debug")
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
@@ -170,6 +197,11 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+nvim_lsp['bazel'].setup {
+  cmd = {'bazel-lsp'},
+  on_attach = on_attach,
+}
 EOF
 
 """"""""""""""""""""
