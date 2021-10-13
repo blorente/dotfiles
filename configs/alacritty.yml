@@ -9,3 +9,6 @@ font:
   bold_italic:
     family: FiraCode Nerd Font Mono
   size: 20.0
+key_bindings:
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left,  mods: Alt, chars: "\x1BB" }
