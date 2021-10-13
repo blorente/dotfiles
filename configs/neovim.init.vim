@@ -162,6 +162,7 @@ EOF
 lua <<EOF
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.gopls.setup{}
+require'lspconfig'.bashls.setup{}
 
 vim.lsp.set_log_level("debug")
 local nvim_lsp = require('lspconfig')
@@ -189,7 +190,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'gopls' }
+local servers = { 'pyright', 'gopls', 'bashls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,

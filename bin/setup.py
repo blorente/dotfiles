@@ -2,6 +2,7 @@
 
 """
 TODO
+- [ ] Rewrite in Rust?
 - [ ] Make post and pre install be a list of actions, which can be either scripts, or config files.
 - [ ] Mark pre-post installs as failures as well.
 - [ ] Installed checks are broken:
@@ -148,7 +149,12 @@ PIP_PACKAGES: List[SystemPackage] = [
     SP("click"),
     SP("emoji"),
 ]
-NPM_PACKAGES: List[SystemPackage] = [SP("pyright"), SP("pm2"), SP("netlify")]
+NPM_PACKAGES: List[SystemPackage] = [
+    SP("pyright"),
+    SP("pm2"),
+    SP("netlify"),
+    SP("bash-language-server"),
+]
 GO_PACKAGES: List[SystemPackage] = [SP("golang.org/x/tools/gopls@latest")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
