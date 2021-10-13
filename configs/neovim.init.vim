@@ -201,10 +201,10 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Setup our own special bazel server.
-nvim_lsp['bazel'].setup {
-  cmd = {'bazel-lsp'},
-  on_attach = on_attach,
-}
+--nvim_lsp['bazel'].setup {
+--  cmd = {'bazel-lsp'},
+--  on_attach = on_attach,
+--}
 EOF
 
 """"""""""""""""""""
