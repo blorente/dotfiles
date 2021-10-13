@@ -4,6 +4,9 @@
 TODO
 - [ ] Make post and pre install be a list of actions, which can be either scripts, or config files.
 - [ ] Mark pre-post installs as failures as well.
+- [ ] Installed checks are broken:
+    - [ ] For apt-get packages
+    - [ ] For go packages
 """
 
 import argparse
@@ -95,14 +98,19 @@ Npm = PackageInstaller(
     install_cmd_template="npm install -g {package}",
     check_cmd_template="npm list -g {package}",
 )
+Go = PackageInstaller(
+    name="Go",
+    install_cmd_template="go install {package}",
+    check_cmd_template="go list $HOME/go/{package}",
+)
 
 
 @dataclass
 class SystemPackage:
     name: str
     package: str
-    pre_install: str = None
-    post_install: str = None
+    pre_install: str = ""
+    post_install: str = ""
     sources: Dict[str, str] = None
 
 
@@ -129,6 +137,9 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("tmux"),
     SP("tree"),
     SP("python3"),
+    SystemPackage(
+        name="golang", package="golang", post_install='mkdir -p "$HOME/go{bin,src,pkg}"'
+    ),
 ]
 
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
@@ -138,6 +149,7 @@ PIP_PACKAGES: List[SystemPackage] = [
     SP("emoji"),
 ]
 NPM_PACKAGES: List[SystemPackage] = [SP("pyright"), SP("pm2"), SP("netlify")]
+GO_PACKAGES: List[SystemPackage] = [SP("golang.org/x/tools/gopls@latest")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="powerlevel10k",
@@ -255,6 +267,7 @@ def ensure_language_packages_installed():
     failed_packages = []
     failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
     failed_packages += ensure_packages_installed(NPM_PACKAGES, Npm)
+    failed_packages += ensure_packages_installed(GO_PACKAGES, Go)
     return failed_packages
 
 
