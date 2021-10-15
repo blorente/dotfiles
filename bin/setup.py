@@ -141,6 +141,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="golang", package="golang", post_install='mkdir -p "$HOME/go{bin,src,pkg}"'
     ),
+    SP("git-extras"),
 ]
 
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
