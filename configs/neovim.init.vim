@@ -14,7 +14,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-
 " Install Nerdtree
 Plug 'preservim/nerdtree'
 
@@ -45,6 +44,11 @@ Plug 'cappyzawa/starlark.vim' " Ugly hack until treesitter gets a starlark parse
 
 " LSP Config for NVim
 Plug 'neovim/nvim-lspconfig'
+
+" Autocompletion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
 
 call plug#end() 
 
@@ -158,6 +162,24 @@ configs[bazel_lsp_name] = {
 }
 EOF
 
+" Autocompletion config
+set completeopt=menu,menuone,noselect
+
+lua <<EOF
+  local cmp = require'cmp'
+
+  cmp.setup({
+    mapping = {
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'buffer' },
+    }
+  })
+EOF
+
+
 " General LSP config
 lua <<EOF
 require'lspconfig'.pyright.setup{}
@@ -196,7 +218,8 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   }
 end
 
@@ -206,6 +229,7 @@ end
 --  on_attach = on_attach,
 --}
 EOF
+
 
 """"""""""""""""""""
 " Keybinds for Plugins
