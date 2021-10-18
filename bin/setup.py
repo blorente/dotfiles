@@ -104,6 +104,11 @@ Go = PackageInstaller(
     install_cmd_template="go install {package}",
     check_cmd_template="go list $HOME/go/{package}",
 )
+RustupNightly = PackageInstaller(
+    name="RustupNightly",
+    install_cmd_template="rustup +nightly component add {package}",
+    check_cmd_template="rustup component list | grep {package}",
+)
 
 
 @dataclass
@@ -157,6 +162,7 @@ NPM_PACKAGES: List[SystemPackage] = [
     SP("bash-language-server"),
 ]
 GO_PACKAGES: List[SystemPackage] = [SP("golang.org/x/tools/gopls@latest")]
+RUSTUP_NIGHTLY_PACKAGES: List[SystemPackage] = [SP("rust-analyzer-preview")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="powerlevel10k",
@@ -275,6 +281,7 @@ def ensure_language_packages_installed():
     failed_packages += ensure_packages_installed(PIP_PACKAGES, Pip)
     failed_packages += ensure_packages_installed(NPM_PACKAGES, Npm)
     failed_packages += ensure_packages_installed(GO_PACKAGES, Go)
+    failed_packages += ensure_packages_installed(RUSTUP_NIGHTLY_PACKAGES, RustupNightly)
     return failed_packages
 
 
