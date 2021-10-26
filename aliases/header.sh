@@ -15,6 +15,16 @@ alias reload_term="source ~/.zshrc"
 # Easy access to dotfiles
 alias godot="cd $HOME/dotfiles"
 
+function list_or_open() {
+  file=$1
+  if [ -f "${file}" ]; then
+    less "${file}"
+  else
+    exa --all --oneline --header --icons "${file}"
+  fi
+}
+alias ls="list_or_open "
+
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
 source "$HOME/dotfiles/aliases/light_prompt.sh"

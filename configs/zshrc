@@ -40,6 +40,7 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 # Path updates
 PATH="$PATH:/usr/local/bin"
+PATH="$PATH:~/bin"
 
 # Editor config
 EDITOR=nvim

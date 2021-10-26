@@ -138,6 +138,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("tmux"),
     SP("tree"),
     SP("python3"),
+    SP("exa"),
     SystemPackage(
         name="golang", package="golang", post_install='mkdir -p "$HOME/go{bin,src,pkg}"'
     ),
