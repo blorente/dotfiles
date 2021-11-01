@@ -107,3 +107,9 @@ function _do_gh_clone() {
   )
 }
 alias gh_clone="_do_gh_clone "
+
+function git_unmerge() {
+  git add "$@"
+  git reset HEAD "$@"
+  git checkout "$@"
+}

@@ -153,12 +153,30 @@ lua <<EOF
   cmp.setup({
     mapping = {
       ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = {
       { name = 'nvim_lsp' },
       { name = 'buffer' },
     }
   })
+
+  -- When searching with `/`, use the buffer as a source for autocompletion.
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- When searching with `:`, use the vim path and the command line completions as a source for autocompletion.
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
 EOF
 
 
