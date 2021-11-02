@@ -45,9 +45,15 @@ Plug 'cappyzawa/starlark.vim' " Ugly hack until treesitter gets a starlark parse
 " LSP Config for NVim
 Plug 'neovim/nvim-lspconfig'
 
+" Snippets (mostly a dep of completion for now)
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
 " Autocompletion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
 call plug#end() 
@@ -151,14 +157,16 @@ lua <<EOF
   local cmp = require'cmp'
 
   cmp.setup({
+    snippet = {
+      expand = function(args) vim.fn["vsnip#anonymous"](args.body) end
+    },
     mapping = {
       ['<Tab>'] = cmp.mapping.confirm({ select = true }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    }
+    sources = {{ name = 'nvim_lsp' },
+      { name = 'buffer' }
+      }
   })
 
   -- When searching with `/`, use the buffer as a source for autocompletion.
