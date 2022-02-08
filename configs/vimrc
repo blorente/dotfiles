@@ -24,7 +24,6 @@ set signcolumn=yes " Show a column at before line numbers, for git and LSP messa
 
 " Folding
 set foldmethod=indent " Fold all code based on indent
-set foldenable " Fold all files automatically on open
 set foldnestmax=5 " Nest a maximum of 5 times
 set shiftwidth=2 " Fold starting from 2 spaces
 

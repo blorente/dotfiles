@@ -35,6 +35,7 @@ alias gpush='git push'
 alias gl='git log --pretty=oneline'
 alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
+alias gcp='git cherry-pick '
 
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
 alias git_branch_log='git log "$(git merge-base master head)"..head'
