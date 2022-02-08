@@ -133,14 +133,14 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     ),
     SP("ripgrep"),
     SP("htop"),
-    SP("fzf"),
+    SystemPackage(name="fzf", post_install="$(brew --prefix)/opt/fzf/install --key-bindings --completion"),
     SP("tldr"),
     SP("tmux"),
     SP("tree"),
     SP("python3"),
     SP("exa"),
     SystemPackage(
-        name="golang", package="golang", post_install='mkdir -p "$HOME/go{bin,src,pkg}"'
+        name="golang", package="golang"
     ),
     SP("git-extras"),
 ]
