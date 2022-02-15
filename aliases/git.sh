@@ -35,7 +35,21 @@ alias gpush='git push'
 alias gl='git log --pretty=oneline'
 alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
-alias gcp='git cherry-pick '
+
+function git_continue_abort() {
+  set -x
+  command="$1"
+  subcommand="$2"
+  flag=""
+  if [[ $subcommand == "a" ]]; then
+    flag='--abort'
+  elif [[ $subcommand == "c" ]]; then
+    flag='--continue'
+  fi
+  git $command $flag "${@:3}"
+}
+alias gcp='git_continue_abort cherry-pick '
+alias grb='git_continue_abort rebase '
 
 alias git_branch_changes='git diff "$(git merge-base master head)"..head'
 alias git_branch_log='git log "$(git merge-base master head)"..head'

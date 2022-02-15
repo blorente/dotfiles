@@ -27,6 +27,8 @@ function list_or_open() {
 }
 alias ls="list_or_open "
 
+alias push_tmp="pushd $(mktemp -d)"
+
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
 source "$HOME/dotfiles/aliases/light_prompt.sh"
