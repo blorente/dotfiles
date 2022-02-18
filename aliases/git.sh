@@ -45,6 +45,8 @@ function git_continue_abort() {
     flag='--abort'
   elif [[ $subcommand == "c" ]]; then
     flag='--continue'
+  elif [[ $subcommand == "i" ]]; then
+    flag='--interactive'
   fi
   git $command $flag "${@:3}"
 }
