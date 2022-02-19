@@ -124,7 +124,6 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
         name="neovim",
         package="neovim",
         sources={"Apt": "ppa:neovim-ppa/unstable"},
-        post_install="nvim --headless +PlugInstall +'TSInstall all' +qa",
     ),
     SystemPackage(
         name="zsh",
@@ -133,7 +132,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     ),
     SP("ripgrep"),
     SP("htop"),
-    SystemPackage(name="fzf", post_install="$(brew --prefix)/opt/fzf/install --key-bindings --completion"),
+    SystemPackage(name="fzf", package="fzf", post_install="[[uname == 'Darwin']] && $(brew --prefix)/opt/fzf/install --key-bindings --completion"),
     SP("tldr"),
     SP("tmux"),
     SP("tree"),
