@@ -132,15 +132,17 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     ),
     SP("ripgrep"),
     SP("htop"),
-    SystemPackage(name="fzf", package="fzf", post_install="[[uname == 'Darwin']] && $(brew --prefix)/opt/fzf/install --key-bindings --completion"),
+    SystemPackage(
+        name="fzf",
+        package="fzf",
+        post_install="[[uname == 'Darwin']] && $(brew --prefix)/opt/fzf/install --key-bindings --completion",
+    ),
     SP("tldr"),
     SP("tmux"),
     SP("tree"),
     SP("python3"),
     SP("exa"),
-    SystemPackage(
-        name="golang", package="golang"
-    ),
+    SystemPackage(name="golang", package="golang"),
     SP("git-extras"),
     SP("jq"),
 ]
@@ -259,6 +261,7 @@ def ensure_config_files(filemap: Dict[str, ConfigFile]) -> List[str]:
                 log.error(f"Config file {config_file} exists, but is not a symlink.")
                 failed_configs.append(name)
         else:
+            in_system.parent.mkdir(exist_ok=True, parents=True)
             in_system.symlink_to(in_repo)
             log.info(f"-> {name} OK [✅]")
 
