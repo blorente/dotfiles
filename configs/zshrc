@@ -46,7 +46,9 @@ PATH="$PATH:~/bin"
 EDITOR=nvim
 
 # Git Manager Stuff
+alias gog='cd $(gtm find)'
 alias ggo='cd $(gtm find)'
+alias gop="gtm find "
 
 bindkey -e
 bindkey "^[a" beginning-of-line
@@ -60,6 +62,7 @@ bindkey "^[[3~" delete-char
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export COURSIER_CREDENTIALS="$HOME/.config/coursier/credentials.properties"
 
 # Go setup
 export GOPATH=$HOME/go
