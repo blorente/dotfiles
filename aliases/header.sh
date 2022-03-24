@@ -1,19 +1,10 @@
 alias v='nvim '
 
-# Silly things
-alias train="while : ; do sl -a ; done"
-do_timer () {
- termdown --font banner3 --no-seconds --alt-format --title "$2" $( expr 60 \* $1 )
-}
-alias timer="do_timer"
-
-# FZF things
-
 # Reload headers
 alias reload_term="source ~/.zshrc"
 
 # Easy access to dotfiles
-alias godot="cd $HOME/dotfiles"
+alias godot="cd $HOME/dotfiles && nvim ."
 
 function list_or_open() {
   file=$1
@@ -28,6 +19,17 @@ function list_or_open() {
 alias ls="list_or_open "
 
 alias push_tmp="pushd $(mktemp -d)"
+
+function run_and_say() {
+  $@
+  res=$?
+  if [[ -z res ]]; then
+    say "Command finished successfully"
+  else
+    say "Command failed"
+  fi
+}
+alias ras="run_and_say "
 
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
