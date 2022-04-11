@@ -22,12 +22,7 @@ alias push_tmp="pushd $(mktemp -d)"
 
 function run_and_say() {
   $@
-  res=$?
-  if [[ -z res ]]; then
-    say "Command finished successfully"
-  else
-    say "Command failed"
-  fi
+  say -v Victoria "Command finished"
 }
 alias ras="run_and_say "
 

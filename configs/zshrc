@@ -3,7 +3,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Plugins
-source ~/completions.zsh
+#source ~/completions.zsh
 source ~/dotfiles/aliases/header.sh
 
 source ~/dotfiles/configs/hidden/zshrc.*
@@ -12,20 +12,6 @@ source ~/dotfiles/configs/hidden/zshrc.*
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
 
-#
-# powerlevel10k
-#
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/configs/p10k.zsh.
-# This loads our configration for p10k
-[[ ! -f ~/dotfiles/configs/p10k.zsh ]] || source ~/dotfiles/configs/p10k.zsh
-# This loads the actual p10k
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # Powerlevel10k customization
 #typeset -g POWERLEVEL9K_VCS_HIDE_TAGS=true
@@ -42,6 +28,10 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 PATH="$PATH:/usr/local/bin"
 PATH="$PATH:~/bin"
 
+# Node Version Manager
+#export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # Editor config
 EDITOR=nvim
 
@@ -57,14 +47,25 @@ bindkey "[b" backward-word
 bindkey "[f" forward-word
 bindkey "^[[3~" delete-char
 
-
-# Neovim installation things
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export COURSIER_CREDENTIALS="$HOME/.config/coursier/credentials.properties"
 
 # Go setup
 export GOPATH=$HOME/go
-export GOROOT="$(brew --prefix golang)/libexec"
+#export GOROOT="$(brew --prefix golang)/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+#
+# powerlevel10k
+#
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/dotfiles/configs/p10k.zsh.
+# This loads our configration for p10k
+[[ ! -f ~/dotfiles/configs/p10k.zsh ]] || source ~/dotfiles/configs/p10k.zsh
+# This loads the actual p10k
+source ~/powerlevel10k/powerlevel10k.zsh-theme
