@@ -71,6 +71,7 @@ lua <<EOF
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
+    preview = false,
     mappings = {
       i = {
         ["<esc>"] = actions.close
@@ -240,6 +241,7 @@ map <Leader>tt :NERDTreeToggle<CR>
 " Finding files
 :noremap <Leader>ff :Telescope find_files<CR>
 :noremap <Leader>fb :Telescope buffers<CR>
+:noremap <Leader>fi :Telescope current_buffer_fuzzy_find<CR>
 :noremap <Leader>fg :Telescope live_grep<CR>
 
 " Auto Commenter mappings
