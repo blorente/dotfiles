@@ -56,6 +56,10 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+" Harpoon
+Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
+Plug 'ThePrimeagen/harpoon'
+
 call plug#end() 
 
 filetype plugin on
@@ -239,10 +243,18 @@ map <Leader>tf :NERDTreeFind<CR>
 map <Leader>tt :NERDTreeToggle<CR>
 
 " Finding files
+" Telescope
 :noremap <Leader>ff :Telescope find_files<CR>
 :noremap <Leader>fb :Telescope buffers<CR>
 :noremap <Leader>fi :Telescope current_buffer_fuzzy_find<CR>
 :noremap <Leader>fg :Telescope live_grep<CR>
+
+" Harpoon
+:noremap <Leader>fa :lua require("harpoon.mark").add_file()<CR>
+:noremap <Leader>fm :lua require("harpoon.ui").toggle_quick_menu()<CR>
+:noremap <Leader>fj :lua require("harpoon.ui").nav_file(1)<CR>
+:noremap <Leader>fk :lua require("harpoon.ui").nav_file(2)<CR>
+:noremap <Leader>fl :lua require("harpoon.ui").nav_file(3)<CR>
 
 " Auto Commenter mappings
 :nnoremap <Leader>/ :call nerdcommenter#Comment('n', 'toggle')<CR> " Toggle comments in current line
