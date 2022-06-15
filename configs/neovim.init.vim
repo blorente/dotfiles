@@ -14,6 +14,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
+" FZF because Telescope find_files is slow AF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Install Nerdtree
 Plug 'preservim/nerdtree'
 
@@ -244,7 +248,7 @@ map <Leader>tt :NERDTreeToggle<CR>
 
 " Finding files
 " Telescope
-:noremap <Leader>ff :Telescope find_files<CR>
+:noremap <Leader>ff :Files<CR>
 :noremap <Leader>fb :Telescope buffers<CR>
 :noremap <Leader>fi :Telescope current_buffer_fuzzy_find<CR>
 :noremap <Leader>fg :Telescope live_grep<CR>
