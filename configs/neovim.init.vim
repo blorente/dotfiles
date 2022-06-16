@@ -141,6 +141,7 @@ local configs = require 'lspconfig/configs'
 local util = require 'lspconfig/util'
 local bazel_lsp_name = 'bazel'
 local bazel_lsp_bin = 'bazel-lsp'
+lspconfig = require 'lspconfig'
 
 configs[bazel_lsp_name] = {
   default_config= {
@@ -155,6 +156,22 @@ configs[bazel_lsp_name] = {
    commands = {},
    docs = {},
 }
+
+-- Configure pyright, for python
+lspconfig.pyright.setup{}
+lspconfig.gopls.setup {
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  }
 EOF
 
 " Autocompletion config
@@ -272,6 +289,8 @@ augroup fmt
   autocmd!
   autocmd BufWritePre * undojoin | Neoformat
 augroup END
+  
+command NoAutoFormat autocmd!fmt 
 
 """"""""""""""""""""
 " Color Scheme
