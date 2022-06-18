@@ -198,6 +198,14 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_system_home_location=Path(".config/nvim/init.vim"),
         in_repo_location=Path("neovim.init.vim"),
     ),
+    "writing": ConfigFile(
+        in_system_home_location=Path(".config/nvim/projects/writing.vim"),
+        in_repo_location=Path("writing.vim"),
+    ),
+    "dnd": ConfigFile(
+        in_system_home_location=Path(".config/nvim/projects/dnd.vim"),
+        in_repo_location=Path("writing.vim"),
+    ),
     "zsh-completions": ConfigFile(
         in_system_home_location=Path("completions.zsh"),
         in_repo_location=Path("zsh_completions"),

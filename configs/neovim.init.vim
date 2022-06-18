@@ -71,6 +71,9 @@ Plug 'windwp/nvim-projectconfig'
 " Zen Mode 
 Plug 'folke/zen-mode.nvim'
 
+" Vim in Firefox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 call plug#end() 
 
 filetype plugin on
@@ -320,4 +323,9 @@ let g:rainbow_active = 1
 lua << EOF
   require("zen-mode").setup {
   }
+EOF
+
+" Set up nvim-project 
+lua << EOF
+  require('nvim-projectconfig').setup()
 EOF
