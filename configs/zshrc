@@ -6,7 +6,9 @@ export LANG=en_US.UTF-8
 #source ~/completions.zsh
 source ~/dotfiles/aliases/header.sh
 
-source ~/dotfiles/configs/hidden/zshrc.*
+if [[ -f "~/dotfiles/configs/hidden/zshrc.*" ]]; then
+  source ~/dotfiles/configs/hidden/zshrc.*
+fi
 
 # fzf config
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
