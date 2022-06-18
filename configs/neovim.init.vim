@@ -25,9 +25,10 @@ Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Spaceduck theme
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-Plug 'bluz71/vim-moonfly-colors'
+" Color themes
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Spaceduck
+Plug 'bluz71/vim-moonfly-colors' " Moonfly
+Plug 'EdenEast/nightfox.nvim' " Nightfox
 
 " Rainbow brackets
 Plug 'frazrepo/vim-rainbow'
@@ -63,6 +64,12 @@ Plug 'hrsh7th/nvim-cmp'
 " Harpoon
 Plug 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
 Plug 'ThePrimeagen/harpoon'
+
+" Per-project nvim configuration
+Plug 'windwp/nvim-projectconfig'
+
+" Zen Mode 
+Plug 'folke/zen-mode.nvim'
 
 call plug#end() 
 
@@ -307,3 +314,10 @@ let g:airline_theme = 'moonfly'
 " Enable Rainbow Brackets globally
 let g:rainbow_active = 1
 
+""""""""""""""""""""
+" Zen mode config
+""""""""""""""""""""
+lua << EOF
+  require("zen-mode").setup {
+  }
+EOF

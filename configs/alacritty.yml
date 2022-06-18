@@ -1,13 +1,13 @@
 dynamic_title: true
 font: 
   normal:
-    family: FiraCode Nerd Font Mono
+    family: Calling Code
   bold:
-    family: FiraCode Nerd Font Mono
+    family: Calling Code
   italic:
-    family: FiraCode Nerd Font Mono
+    family: Calling Code
   bold_italic:
-    family: FiraCode Nerd Font Mono
+    family: Calling Code
   size: 20.0
 key_bindings:
   - { key: Right, mods: Alt, chars: "\x1BF" }
