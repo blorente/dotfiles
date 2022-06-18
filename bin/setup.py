@@ -145,6 +145,9 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SystemPackage(name="golang", package="golang"),
     SP("git-extras"),
     SP("jq"),
+    SP("pandoc"),
+    SP("gopls"),
+    SP("pyright"),
 ]
 
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer")]
