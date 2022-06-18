@@ -10,5 +10,7 @@ font:
     family: Calling Code
   size: 20.0
 key_bindings:
-  - { key: Right, mods: Alt, chars: "\x1BF" }
-  - { key: Left,  mods: Alt, chars: "\x1BB" }
+  - { key: Right,    mods: Alt, chars: "\x1BF" }
+  - { key: Left,     mods: Alt, chars: "\x1BB" }
+  - { key: Equals,   mods: Command|Shift, action: IncreaseFontSize }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize }
