@@ -320,10 +320,10 @@ let g:rainbow_active = 1
 """"""""""""""""""""
 " Zen mode config
 """"""""""""""""""""
-lua << EOf
+lua <<EOF
   require("zen-mode").setup {
     window = {
-      width = 100
+      width = 100,
     }
   }
 EOF
