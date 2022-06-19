@@ -74,6 +74,9 @@ Plug 'folke/zen-mode.nvim'
 " Vim in Firefox
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
+" Vim pencil, for soft-wrapping prose.
+Plug 'preservim/vim-pencil'
+
 call plug#end() 
 
 filetype plugin on
