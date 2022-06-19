@@ -1,5 +1,11 @@
 function write() {
+  f=$1
   cd ~/writing
-  d=$(date +"%Y-%m-%d_%H-%M-%S")
-  nvim . -c "edit _scratch/new_${d}.md"
+  if [[ ! "$f" = "" ]]; then
+    file_path="$f.md"
+  else
+    d=$(date +"%Y-%m-%d_%H-%M-%S")
+    file_path="new_${d}.md"
+  fi
+  nvim . -c "edit _scratch/${file_path}"
 }
