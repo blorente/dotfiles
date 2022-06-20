@@ -172,6 +172,8 @@ configs[bazel_lsp_name] = {
 
 -- Configure pyright, for python
 lspconfig.pyright.setup{}
+
+-- Configure gopls, for go
 lspconfig.gopls.setup {
     cmd = {"gopls", "serve"},
     filetypes = {"go", "gomod"},
@@ -185,6 +187,15 @@ lspconfig.gopls.setup {
       },
     },
   }
+
+lspconfig.rust_analyzer.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {}
+    }
+}
 EOF
 
 " Autocompletion config
@@ -294,6 +305,9 @@ map <Leader>tt :NERDTreeToggle<CR>
 :nnoremap <Leader>/ :call nerdcommenter#Comment('n', 'toggle')<CR> " Toggle comments in current line
 :vnoremap <Leader>/ :call nerdcommenter#Comment('x', 'toggle')<CR> " Toggle comments in current line
 
+" LSP
+:nnoremap K :lua vim.lsp.buf.hover()<CR>
+
 """"""""""""""""""""
 " Plugins augroup
 """"""""""""""""""""
@@ -314,7 +328,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme moonfly
+colorscheme spaceduck
 let g:airline_theme = 'moonfly'
 
 " Enable Rainbow Brackets globally

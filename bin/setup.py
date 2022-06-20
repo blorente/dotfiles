@@ -180,7 +180,7 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="rustup+rust",
         package="curl --proto '=https' --tlsv1.2 -sSf --output /tmp/rustup https://sh.rustup.rs && chmod +x /tmp/rustup && /tmp/rustup -y",
-    ),
+    )
 ]
 
 
