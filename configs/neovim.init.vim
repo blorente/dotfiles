@@ -289,7 +289,7 @@ map <Leader>tt :NERDTreeToggle<CR>
 
 " Finding files
 " Telescope
-:noremap <Leader>ff :Files<CR>
+:noremap <Leader>ff :GitFiles<CR>
 :noremap <Leader>fb :Telescope buffers<CR>
 :noremap <Leader>fi :Telescope current_buffer_fuzzy_find<CR>
 :noremap <Leader>fg :Telescope live_grep<CR>
