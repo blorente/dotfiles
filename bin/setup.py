@@ -143,7 +143,11 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("python3"),
     SP("exa"),
     SystemPackage(name="golang", package="golang"),
-    SP("git-extras"),
+    SystemPackage(
+        name="git-extras",
+        package="git-extras",
+        post_install="git config --global core.excludesfile ~/.gitignore",
+    ),
     SP("jq"),
     SP("pandoc"),
     SP("gopls"),
@@ -180,7 +184,7 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="rustup+rust",
         package="curl --proto '=https' --tlsv1.2 -sSf --output /tmp/rustup https://sh.rustup.rs && chmod +x /tmp/rustup && /tmp/rustup -y",
-    )
+    ),
 ]
 
 
@@ -224,6 +228,10 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
     "tmux": ConfigFile(
         in_system_home_location=Path(".tmux.conf"),
         in_repo_location=Path("tmux.conf"),
+    ),
+    "gitignore": ConfigFile(
+        in_system_home_location=Path(".gitignore"),
+        in_repo_location=Path("gitignore"),
     ),
 }
 
