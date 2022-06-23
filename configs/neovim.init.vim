@@ -211,6 +211,26 @@ lua <<EOF
     mapping = {
       ['<Tab>'] = cmp.mapping.confirm({ select = true }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-j>'] = {
+            c = function(fallback)
+                local cmp = require('cmp')
+                if cmp.visible() then
+                    cmp.select_next_item()
+                else
+                    fallback()
+                end
+            end,
+        },
+        ['<C-k>'] = {
+            c = function(fallback)
+                local cmp = require('cmp')
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                else
+                    fallback()
+                end
+            end,
+        },
     },
     sources = {{ name = 'nvim_lsp' },
       { name = 'buffer' }
@@ -246,7 +266,7 @@ local on_attach = function(client, bufnr)
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
   -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -328,7 +348,7 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme spaceduck
+colorscheme duskfox
 let g:airline_theme = 'moonfly'
 
 " Enable Rainbow Brackets globally
