@@ -7,5 +7,8 @@ function write() {
     d=$(date +"%Y-%m-%d_%H-%M-%S")
     file_path="new_${d}.md"
   fi
-  nvim . -c "edit _scratch/${file_path}"
+  for i in 1 .. 10; do
+    echo "\n" >> "${file_path}"
+  done
+  nvim . -c "edit _scratch/${file_path}" -c "10"
 }
