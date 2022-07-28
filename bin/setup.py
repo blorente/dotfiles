@@ -176,11 +176,11 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
         name="nvim-plug",
         package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
     ),
-    SystemPackage(
-        name="nvm+node",
-        package="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash",
-        post_install="nvm install 16",
-    ),
+#    SystemPackage(
+#        name="nvm+node",
+#        package="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash",
+#        post_install="nvm install 16",
+#    ),
     SystemPackage(
         name="rustup+rust",
         package="curl --proto '=https' --tlsv1.2 -sSf --output /tmp/rustup https://sh.rustup.rs && chmod +x /tmp/rustup && /tmp/rustup -y",
