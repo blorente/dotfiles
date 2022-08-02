@@ -293,6 +293,7 @@ map <Leader>tt :NERDTreeToggle<CR>
 
 " LSP
 :nnoremap K :lua vim.lsp.buf.hover()<CR>
+:nnoremap gR :lua vim.lsp.buf.rename()<CR>
 
 """"""""""""""""""""
 " Plugins augroup
