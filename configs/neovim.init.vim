@@ -74,6 +74,8 @@ Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Vim pencil, for soft-wrapping prose.
 Plug 'preservim/vim-pencil'
 
+" For debugging startup time
+Plug 'dstein64/vim-startuptime'
 call plug#end() 
 
 filetype plugin on
