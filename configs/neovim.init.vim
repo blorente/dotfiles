@@ -18,8 +18,9 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Install Nerdtree
-Plug 'preservim/nerdtree'
+" Nerdtree equivalent
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Fancy status lines
 Plug 'vim-airline/vim-airline'
@@ -86,8 +87,8 @@ filetype plugin on
 " Nerd Comment 
 let g:NERDCreateDefaultMappings = 0 " Don't create default mappings, define our own below
 
-" Telescope config
 lua <<EOF
+-- Telescope config
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
@@ -99,10 +100,8 @@ require('telescope').setup{
     },
   }
 }
-EOF
 
-" Treesitter config
-lua <<EOF
+-- Treesitter config
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -113,12 +112,9 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
-EOF
 
-" LSP Config
-
-" Add bazel-lsp as a server
-lua <<EOF
+-- LSP Config
+-- Add bazel-lsp as a server
 -- Configure bazel-lsp server, a heavily modified version of 
 --   https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/pyright.lua
 local configs = require 'lspconfig/configs'
@@ -224,11 +220,7 @@ lua <<EOF
     })
   })
 
-EOF
-
-
-" General LSP config
-lua <<EOF
+-- General LSP config
 vim.lsp.set_log_level("debug")
 local nvim_lsp = require('lspconfig')
 
@@ -266,14 +258,22 @@ end
 
 EOF
 
+" Setup nvim-tree
+lua <<EOF
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+EOF
 
 """"""""""""""""""""
 " Keybinds for Plugins
 """"""""""""""""""""
 
 " Open Nerdtree
-map <Leader>tf :NERDTreeFind<CR>
-map <Leader>tt :NERDTreeToggle<CR>
+map <Leader>tf :NvimTreeFindFile<CR>
+map <Leader>tt :NvimTreeToggle<CR>
 
 " Finding files
 " Telescope
