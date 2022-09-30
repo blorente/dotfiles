@@ -1,3 +1,5 @@
+
+
 -- TODO
 vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -10,11 +12,7 @@ source ~/.vimrc
 ---------------------
 
 require("plugins")
-
--- TODO
-vim.cmd([[
-filetype plugin on
-]])
+require('impatient').enable_profile()
 
 -- ----------------
 -- Plugins settings
@@ -106,14 +104,11 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-
-
-colorscheme duskfox
-let g:airline_theme = 'moonfly'
-
-" Enable Rainbow Brackets globally
-let g:rainbow_active = 1
 ]])
+vim.cmd('colorscheme duskfox')
+vim.g.airline_theme = 'moonfly' -- Moonfly for airline
+-- Enable Rainbow Brackets globally
+vim.g.rainbow_active = 1
 
 ---------------------
 -- Zen mode config
@@ -126,3 +121,5 @@ require("zen-mode").setup {
 
 -- Set up nvim-project 
 require('nvim-projectconfig').setup()
+
+require'utils.profile'.stop()

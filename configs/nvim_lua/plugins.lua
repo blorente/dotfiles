@@ -23,6 +23,7 @@ Plug('vim-airline/vim-airline-themes')
 Plug('pineapplegiant/spaceduck', { branch = 'main' }) -- Spaceduck
 Plug('bluz71/vim-moonfly-colors') -- Moonfly
 Plug('EdenEast/nightfox.nvim') -- Nightfox
+Plug('savq/melange') -- Melange
 
 -- Rainbow brackets
 Plug('frazrepo/vim-rainbow')
@@ -53,7 +54,7 @@ Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/nvim-cmp')
 
 -- Harpoon
-Plug('nvim-lua/plenary.nvim') -- don't forget to add this one if you don't have it yet!
+Plug('nvim-lua/plenary.nvim', {branch = 'master'}) -- don't forget to add this one if you don't have it yet!
 Plug('ThePrimeagen/harpoon')
 
 -- Per-project nvim configuration
@@ -70,5 +71,8 @@ Plug('preservim/vim-pencil')
 
 -- For debugging startup time
 Plug('dstein64/vim-startuptime')
+
+-- Cache intepreted plugin stirngs.
+Plug('lewis6991/impatient.nvim')
 
 vim.call('plug#end')
