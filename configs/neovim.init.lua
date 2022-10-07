@@ -1,5 +1,3 @@
-
-
 -- TODO
 vim.cmd([[
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -10,9 +8,7 @@ source ~/.vimrc
 ---------------------
 -- Plugins
 ---------------------
-
 require("plugins")
-require('impatient').enable_profile()
 
 -- ----------------
 -- Plugins settings
@@ -105,8 +101,8 @@ if exists('+termguicolors')
   set termguicolors
 endif
 ]])
-vim.cmd('colorscheme duskfox')
-vim.g.airline_theme = 'moonfly' -- Moonfly for airline
+vim.cmd('colorscheme melange')
+require('lualine').setup()
 -- Enable Rainbow Brackets globally
 vim.g.rainbow_active = 1
 
@@ -122,4 +118,3 @@ require("zen-mode").setup {
 -- Set up nvim-project 
 require('nvim-projectconfig').setup()
 
-require'utils.profile'.stop()

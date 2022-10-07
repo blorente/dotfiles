@@ -16,13 +16,12 @@ Plug('kyazdani42/nvim-web-devicons') -- optional, for file icons
 Plug('kyazdani42/nvim-tree.lua')
 
 -- Fancy status lines
-Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
+Plug('nvim-lualine/lualine.nvim')
 
 -- Color themes
 Plug('pineapplegiant/spaceduck', { branch = 'main' }) -- Spaceduck
-Plug('bluz71/vim-moonfly-colors') -- Moonfly
-Plug('EdenEast/nightfox.nvim') -- Nightfox
+--Plug('bluz71/vim-moonfly-colors') -- Moonfly
+--Plug('EdenEast/nightfox.nvim') -- Nightfox
 Plug('savq/melange') -- Melange
 
 -- Rainbow brackets
@@ -43,8 +42,8 @@ Plug('cappyzawa/starlark.vim') -- Ugly hack until treesitter gets a starlark par
 Plug('neovim/nvim-lspconfig')
 
 -- Snippets (mostly a dep of completion for now)
-Plug('hrsh7th/cmp-vsnip')
-Plug('hrsh7th/vim-vsnip')
+Plug('L3MON4D3/LuaSnip')
+Plug('saadparwaiz1/cmp_luasnip')
 
 -- Autocompletion
 Plug('hrsh7th/cmp-nvim-lsp')
@@ -54,7 +53,6 @@ Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/nvim-cmp')
 
 -- Harpoon
-Plug('nvim-lua/plenary.nvim', {branch = 'master'}) -- don't forget to add this one if you don't have it yet!
 Plug('ThePrimeagen/harpoon')
 
 -- Per-project nvim configuration
@@ -71,8 +69,5 @@ Plug('preservim/vim-pencil')
 
 -- For debugging startup time
 Plug('dstein64/vim-startuptime')
-
--- Cache intepreted plugin stirngs.
-Plug('lewis6991/impatient.nvim')
 
 vim.call('plug#end')

@@ -3,7 +3,9 @@ local cmp = require'cmp'
 
 cmp.setup({
   snippet = {
-    expand = function(args) vim.fn["vsnip#anonymous"](args.body) end
+    expand = function(args) 
+      require('luasnip').lsp_expand(args.body)
+    end
   },
   mapping = {
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
@@ -29,9 +31,10 @@ cmp.setup({
           end,
       },
   },
-  sources = {{ name = 'nvim_lsp' },
+  sources = {
+    { name = 'nvim_lsp' },
     { name = 'buffer' }
-    }
+  }
 })
 
 -- When searching with `/`, use the buffer as a source for autocompletion.
