@@ -8,9 +8,13 @@ local bazel_lsp_name = 'bazel'
 local bazel_lsp_bin = 'bazel-lsp'
 lspconfig = require 'lspconfig'
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 configs[bazel_lsp_name] = {
   default_config= {
     cmd = {bazel_lsp_bin},
+    capabilities = capabilities,
     filetypes = {'bzl'},
     root_dir = function(fname)
        local root_files = {'WORKSPACE', 'workspace.bzl'}
@@ -23,12 +27,15 @@ configs[bazel_lsp_name] = {
 }
 
 -- Configure pyright, for python
-lspconfig.pyright.setup{}
+lspconfig.pyright.setup{
+    capabilities = capabilities,
+}
 
 -- Configure gopls, for go
 lspconfig.gopls.setup {
     cmd = {"gopls", "serve"},
     filetypes = {"go", "gomod"},
+    capabilities = capabilities,
     root_dir = util.root_pattern("go.work", "go.mod", ".git"),
     settings = {
       gopls = {
@@ -43,6 +50,7 @@ lspconfig.gopls.setup {
 lspconfig.rust_analyzer.setup{
     on_attach = on_attach,
     flags = lsp_flags,
+    capabilities = capabilities,
     -- Server-specific settings...
     settings = {
       ["rust-analyzer"] = {}

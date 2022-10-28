@@ -7,6 +7,9 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end
   },
+  window = {
+    completion = cmp.config.window.bordered(),
+  },
   mapping = {
     ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -33,6 +36,8 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'luasnip' }
+  }, {
     { name = 'buffer' }
   }
 })
