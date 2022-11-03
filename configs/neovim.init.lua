@@ -27,7 +27,7 @@ require("lsp")
 
 -- Autocompletion config
 vim.opt.completeopt = "menu,menuone,noselect"
-require("cmp")
+--require("cmp")
 
 -- General LSP config
 vim.lsp.set_log_level("debug")

@@ -173,6 +173,10 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
         package="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k",
     ),
     SystemPackage(
+        name="starship",
+        package="curl -sS https://starship.rs/install.sh | sh",
+    ),
+    SystemPackage(
         name="nvim-plug",
         package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
     ),
@@ -232,6 +236,10 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
     "gitignore": ConfigFile(
         in_system_home_location=Path(".gitignore"),
         in_repo_location=Path("gitignore"),
+    ),
+    "starship_prompt": ConfigFile(
+        in_system_home_location=Path(".config/starship.toml"),
+        in_repo_location=Path("starship_prompt.toml"),
     ),
 }
 
