@@ -1,4 +1,5 @@
 alias v='nvim '
+alias l='~/.local/bin/lvim '
 
 # Reload headers
 alias reload_term="source ~/.zshrc"

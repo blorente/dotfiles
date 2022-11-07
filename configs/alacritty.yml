@@ -1,16 +1,16 @@
 dynamic_title: true
-font: 
+font:
   normal:
-    family: Calling Code
+    family: CodeNewRoman Nerd Font Mono
   bold:
-    family: Calling Code
+    family: CodeNewRoman Nerd Font Mono
   italic:
-    family: Calling Code
+    family: CodeNewRoman Nerd Font Mono
   bold_italic:
-    family: Calling Code
+    family: CodeNewRoman Nerd Font Mono
   size: 20.0
 key_bindings:
-  - { key: Right,    mods: Alt, chars: "\x1BF" }
-  - { key: Left,     mods: Alt, chars: "\x1BB" }
-  - { key: Equals,   mods: Command|Shift, action: IncreaseFontSize }
-  - { key: Minus,    mods: Command, action: DecreaseFontSize }
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left, mods: Alt, chars: "\x1BB" }
+  - { key: Equals, mods: Command|Shift, action: IncreaseFontSize }
+  - { key: Minus, mods: Command, action: DecreaseFontSize }

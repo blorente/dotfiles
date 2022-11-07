@@ -65,3 +65,6 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # Starship prompt
 # https://starship.rs/presets/
 eval "$(starship init zsh)"
+
+# Add lunar vim to path
+PATH="${PATH}:~/.local/bin"
