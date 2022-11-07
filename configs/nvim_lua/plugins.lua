@@ -42,8 +42,8 @@ Plug('cappyzawa/starlark.vim') -- Ugly hack until treesitter gets a starlark par
 Plug('neovim/nvim-lspconfig')
 
 -- Snippets (mostly a dep of completion for now)
-Plug('L3MON4D3/LuaSip')
-Plug('saadparwaiz1/cmp_luasnip')
+- Plug('L3MON4D3/LuaSnip')
+- Plug('saadparwaiz1/cmp_luasnip')
 
 -- Autocompletion
 Plug('hrsh7th/cmp-nvim-lsp')

@@ -1,0 +1,120 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Disable all the languages
+[bun]
+format = ""
+
+[buf]
+format = ""
+
+[cmake]
+format = ""
+
+[cobol]
+format = ""
+
+[crystal]
+format = ""
+
+[daml]
+format = ""
+
+[dart]
+format = ""
+
+[deno]
+format = ""
+
+[dotnet]
+format = ""
+
+[elixir]
+format = ""
+
+[elm]
+format = ""
+
+[erlang]
+format = ""
+
+[golang]
+format = ""
+
+[helm]
+format = ""
+
+[julia]
+format = ""
+
+[kotlin]
+format = ""
+
+[lua]
+format = ""
+
+[meson]
+format = ""
+
+[nim]
+format = ""
+
+[nodejs]
+format = ""
+
+[ocaml]
+format = ""
+
+[perl]
+format = ""
+
+[php]
+format = ""
+
+[pulumi]
+format = ""
+
+[purescript]
+format = ""
+
+[python]
+format = ""
+
+[raku]
+format = ""
+
+[red]
+format = ""
+
+[rlang]
+format = ""
+
+[ruby]
+format = ""
+
+[rust]
+format = ""
+
+[swift]
+format = ""
+
+[vagrant]
+format = ""
+
+[vlang]
+format = ""
+
+[zig]
+format = ""
+

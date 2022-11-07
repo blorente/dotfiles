@@ -59,7 +59,7 @@ if [[ "${arch}" == "arm64" ]]; then
 else
   brew_prefix="/opt/brew/opt"
 fi
-export GOROOT="${brew_prefix}/libexec"
+export GOROOT="${brew_prefix}/golang/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # Starship prompt

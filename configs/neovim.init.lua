@@ -115,5 +115,5 @@ require("zen-mode").setup {
 }
 
 -- Set up nvim-project 
-require('nvim-projectconfig').setup()
+- require('nvim-projectconfig').setup()
 
