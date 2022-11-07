@@ -17,13 +17,25 @@ source ~/.vimrc
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
---lvim.colorscheme = "lunar"
-lvim.colorscheme = "peachpuff"
+lvim.colorscheme = "lunar"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
+-- Open Nerdtree
+lvim.keys.normal_mode["<Leader>tf"]= ":NvimTreeFindFile<CR>"
+lvim.keys.normal_mode["<Leader>tt"]= ":NvimTreeToggle<CR>"
+
+-- Finding files
+-- Unmap default leader-f
+lvim.keys.normal_mode["<Leader>f"] = ""
+-- Telescope
+lvim.keys.normal_mode["<Leader>ff"] = ":Telescope find_files<CR>"
+lvim.keys.normal_mode["<Leader>fb"] = ":Telescope buffers<CR>"
+lvim.keys.normal_mode["<Leader>fi"] = ":Telescope current_buffer_fuzzy_find<CR>"
+lvim.keys.normal_mode["<Leader>fg"] = ":Telescope live_grep<CR>"
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -51,7 +63,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- }
 
 -- Change theme settings
--- lvim.builtin.theme.options.dim_inactive = true
+lvim.builtin.theme.lunar.options.dim_inactive = true
 -- lvim.builtin.theme.options.style = "storm"
 
 -- Use which-key to add extra bindings with the leader-key prefix

@@ -43,8 +43,8 @@ let mapleader = " "
 nmap <Leader>l :ls <cr>
 
 " Save with Leader s
-:nnoremap <Leader>s :w<CR>
-:nnoremap <Leader>S :wq<CR>
+":nnoremap <Leader>s :w<CR>
+:nnoremap <Leader>S :w<CR>
 :nnoremap <Leader>q :q<CR>
 
 " Switch Buffer
