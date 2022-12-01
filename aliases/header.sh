@@ -27,6 +27,8 @@ function run_and_say() {
 }
 alias ras="run_and_say "
 
+alias cdr="cd $(git rev-parse --show-toplevel)"
+
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
 #source "$HOME/dotfiles/aliases/light_prompt.sh"
