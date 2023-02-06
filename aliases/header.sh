@@ -5,7 +5,7 @@ alias l='~/.local/bin/lvim '
 alias reload_term="source ~/.zshrc"
 
 # Easy access to dotfiles
-alias godot="cd $HOME/dotfiles && nvim ."
+alias godot="cd $HOME/dotfiles && l ."
 
 function list_or_open() {
   file=$1
@@ -27,12 +27,20 @@ function run_and_say() {
 }
 alias ras="run_and_say "
 
+function check_input_has() {
+  wanted="$1"
+  cat /dev/stdin | grep "${wanted}" > /dev/null
+}
+
+alias chin="check_input_has "
+
 alias cdr="cd $(git rev-parse --show-toplevel)"
 
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
 #source "$HOME/dotfiles/aliases/light_prompt.sh"
 source "$HOME/dotfiles/aliases/git.sh"
+source "$HOME/dotfiles/aliases/common.sh"
 source "$HOME/dotfiles/aliases/pants.sh"
 source "$HOME/dotfiles/aliases/jars.sh"
 source "$HOME/dotfiles/aliases/bazel.sh"
