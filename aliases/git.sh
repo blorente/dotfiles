@@ -30,11 +30,22 @@ alias ga='git add'
 alias gcm='git commit -m '
 alias gca='git commit --amend '
 alias gcan='git commit --amend --no-edit'
-alias gpull='git pull --ff-only'
-alias gpush='git push'
 alias gl='git log --pretty=oneline'
 alias gg='git log --graph --decorate --oneline'
 alias gco='git checkout'
+function git_create_branch() {
+  set -x
+  branch_base=$1 # `blorente/` in most cases
+  branch_name=$2
+  if [[ -z $branch_name ]]; then
+    branch="$branch_base"
+  else
+    branch="$branch_base/$branch_name"
+  fi
+  git checkout -b $branch
+}
+alias gcb='git_create_branch '
+alias gcbb='git_create_branch blorente '
 
 function git_continue_abort() {
   set -x
