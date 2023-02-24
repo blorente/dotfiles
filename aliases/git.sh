@@ -46,6 +46,7 @@ function git_create_branch() {
 }
 alias gcb='git_create_branch '
 alias gcbb='git_create_branch blorente '
+alias gbb='git_create_branch blorente '
 
 function git_continue_abort() {
   set -x
