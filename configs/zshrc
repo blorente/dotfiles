@@ -28,7 +28,8 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 
 # Path updates
 PATH="$PATH:/usr/local/bin"
-PATH="$PATH:~/bin"
+PATH="$PATH:$HOME/bin"
+PATH="$PATH:$HOME/.local/bin"
 
 ## Node Version Manager
 #export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
