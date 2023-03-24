@@ -13,7 +13,12 @@ function github_clone() {
 }
 
 alias cppwd="pwd | pbcopy"
+alias cpwd="pwd | pbcopy"
 function cpabs() {
    target=$1
    readlink -f "$target" | pbcopy
+}
+function goroot() {
+  root=$(git rev-parse --show-toplevel)
+  cd "${root}" || return
 }
