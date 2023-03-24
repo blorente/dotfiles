@@ -11,3 +11,9 @@ function github_clone() {
   git clone "https://github.com/${repo}" "${dest}" 
   banner "Cloned ${repo}"
 }
+
+alias cppwd="pwd | pbcopy"
+function cpabs() {
+   target=$1
+   readlink -f "$target" | pbcopy
+}
