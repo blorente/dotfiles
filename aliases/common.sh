@@ -12,11 +12,11 @@ function github_clone() {
   banner "Cloned ${repo}"
 }
 
-alias cppwd="pwd | pbcopy"
-alias cpwd="pwd | pbcopy"
+alias cppwd="pwd | tr -d ' ' | tr -d '\r' | pbcopy"
+alias cpwd="pwd | tr -d ' ' | tr -d '\r' | pbcopy"
 function cpabs() {
    target=$1
-   readlink -f "$target" | pbcopy
+   readlink -f "$target" | tr -d ' ' | tr -d '\r' | pbcopy
 }
 function goroot() {
   root=$(git rev-parse --show-toplevel)
