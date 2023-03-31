@@ -12,8 +12,8 @@ function github_clone() {
   banner "Cloned ${repo}"
 }
 
-alias cppwd="pwd | tr -d ' ' | tr -d '\r' | pbcopy"
-alias cpwd="pwd | tr -d ' ' | tr -d '\r' | pbcopy"
+alias cppwd="readlink -f $(pwd) | tr -d ' ' | tr -d '\r' | pbcopy"
+alias cpwd="readlink -f $(pwd) | tr -d ' ' | tr -d '\r' | pbcopy"
 function cpabs() {
    target=$1
    readlink -f "$target" | tr -d ' ' | tr -d '\r' | pbcopy
