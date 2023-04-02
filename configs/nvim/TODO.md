@@ -1,0 +1,3 @@
+- [ ] Add packer to setup
+- [ ] Add ln -s ~/dotfiles/nvim ~/.config/nvim to setup
+- [ ] Remaps for harpoon
