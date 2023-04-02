@@ -1,12 +1,36 @@
 function map(mode, shortcut, command)
-  vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+	vim.keymap.set(mode, shortcut, command, { noremap = true, silent = true })
 end
 function nnoremap(shortcut, command)
-  map('n', shortcut, command)
+	map('n', shortcut, command)
 end
 function vnoremap(shortcut, command)
-  map('v', shortcut, command)
+	map('v', shortcut, command)
 end
 
 vim.g.mapleader = " "
 nnoremap("<leader>w", ":w<CR>")
+
+local M = {}
+
+function Lsp()
+	nnoremap("<leader>la", vim.lsp.buf.code_action)
+end
+M.Lsp = Lsp
+
+function NvimTree()
+  nnoremap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
+  vnoremap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
+end
+M.NvimTree = NvimTree
+
+function Telescope()
+  local builtin = require('telescope.builtin')
+	nnoremap('<leader>ff', builtin.git_files, {})
+	nnoremap('<leader>fa', builtin.find_files, {})
+	nnoremap('<leader>fg', builtin.live_grep, {})
+end
+M.Telescope = Telescope
+
+return M
+
