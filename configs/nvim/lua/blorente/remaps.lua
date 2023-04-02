@@ -9,7 +9,21 @@ function vnoremap(shortcut, command)
 end
 
 vim.g.mapleader = " "
+
+-- Write easy
 nnoremap("<leader>w", ":w<CR>")
+
+-- leader-y to copy to clipboard.
+nnoremap("<leader>y", "\"+y")
+vnoremap("<leader>y", "\"+y")
+nnoremap("<leader>Y", "\"+Y")
+
+-- leader-d to delete to the void
+-- (and not the clipboard)
+nnoremap("<leader>d", "\"_d")
+vnoremap("<leader>d", "\"_d")
+
+-- Plugin Remaps
 
 local M = {}
 
@@ -26,9 +40,9 @@ M.NvimTree = NvimTree
 
 function Telescope()
   local builtin = require('telescope.builtin')
-	nnoremap('<leader>ff', builtin.git_files, {})
-	nnoremap('<leader>fa', builtin.find_files, {})
-	nnoremap('<leader>fg', builtin.live_grep, {})
+	nnoremap('<leader>ff', builtin.git_files)
+	nnoremap('<leader>fa', builtin.find_files)
+	nnoremap('<leader>fg', builtin.live_grep)
 end
 M.Telescope = Telescope
 

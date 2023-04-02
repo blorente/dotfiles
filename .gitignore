@@ -2,3 +2,5 @@
 .vscode
 configs/hidden
 *.pyc
+# Yeah, ignoring a lockfile. Sue me.
+configs/nvim/plugin/packer_compiled.lua

@@ -13,7 +13,8 @@ source ~/.vimrc
 vim.cmd([[
 augroup fmt
   autocmd!
-  autocmd BufWritePre * undojoin | Neoformat
+  autocmd BufWritePre * undojoin | lua vim.lsp.buf.format()
+  autocmd BufWritePre <buffer> undojoin | lua vim.lsp.buf.format()
 augroup END
   
 command NoAutoFormat autocmd!fmt 
