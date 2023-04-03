@@ -21,14 +21,21 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
 
   -- nvim tree for fancy file navigation
+  --  use {
+  --    'nvim-tree/nvim-tree.lua',
+  --    requires = {
+  --      'nvim-tree/nvim-web-devicons', -- optional
+  --    },
+  --    config = function()
+  --      require("nvim-tree").setup {}
+  --    end
+  --  }
+  -- Until I figure out the speed hiccups with neovim-tree
+  use("ms-jpq/chadtree", { run = ":CHADdeps" })
+
+  -- Easy comments
   use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional
-    },
-    config = function()
-      require("nvim-tree").setup {}
-    end
+    'numToStr/Comment.nvim',
   }
 
   -- LSP out of the box?
@@ -58,5 +65,4 @@ return require('packer').startup(function(use)
 
   -- Format on save
   use("lukas-reineke/lsp-format.nvim")
-
 end)

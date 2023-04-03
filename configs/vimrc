@@ -68,6 +68,4 @@ nmap <Leader>9 :9b<cr>
 
 :nnoremap <Leader><S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
 
-" Map Rg for easy access
-:nnoremap <C-S-f> :Rg 
 
