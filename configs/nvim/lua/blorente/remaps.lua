@@ -37,15 +37,21 @@ end
 M.Lsp = Lsp
 
 function NvimTree()
-  nnoremap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
-  vnoremap("<leader>e", vim.cmd.NvimTreeFindFileToggle)
+  local after = require("blorente.nvim-hack");
+  local function lazy_toggle()
+    after.setup()
+    vim.cmd.NvimTreeFindFileToggle()
+  end
+
+  nnoremap("<leader>e", lazy_toggle)
+  vnoremap("<leader>e", lazy_toggle)
 end
 
 M.NvimTree = NvimTree
 
 function CHADTree()
-  nnoremap("<leader>e", vim.cmd.CHADopen)
-  vnoremap("<leader>e", vim.cmd.CHADopen)
+  -- nnoremap("<leader>e", vim.cmd.CHADopen)
+  -- vnoremap("<leader>e", vim.cmd.CHADopen)
 end
 
 M.CHADTree = CHADTree
@@ -58,5 +64,12 @@ function Telescope()
 end
 
 M.Telescope = Telescope
+
+function Comment()
+  local comment = require('Comment.api')
+  nnoremap('<leader>/', comment.toggle.linewise.current)
+end
+
+M.Comment = Telescope
 
 return M

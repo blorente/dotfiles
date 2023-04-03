@@ -6,6 +6,11 @@ source ~/.vimrc
 ]])
 
 ---------------------
+-- Tell Nvim which python to use
+---------------------
+vim.g.python3_host_prog = "/usr/local/bin/python3"
+
+---------------------
 -- Plugins augroup
 ---------------------
 -- Autoformat buffers on write with Neoformat

@@ -1,7 +1,4 @@
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
@@ -21,17 +18,12 @@ return require('packer').startup(function(use)
   use('theprimeagen/harpoon')
 
   -- nvim tree for fancy file navigation
-  --  use {
-  --    'nvim-tree/nvim-tree.lua',
-  --    requires = {
-  --      'nvim-tree/nvim-web-devicons', -- optional
-  --    },
-  --    config = function()
-  --      require("nvim-tree").setup {}
-  --    end
-  --  }
-  -- Until I figure out the speed hiccups with neovim-tree
-  use("ms-jpq/chadtree", { run = ":CHADdeps" })
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
 
   -- Easy comments
   use {
@@ -62,6 +54,7 @@ return require('packer').startup(function(use)
 
   -- Debug startup time
   use("dstein64/vim-startuptime")
+  use("stevearc/profile.nvim")
 
   -- Format on save
   use("lukas-reineke/lsp-format.nvim")
