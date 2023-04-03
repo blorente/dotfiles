@@ -32,6 +32,7 @@ local M = {}
 
 function Lsp()
   nnoremap("<leader>la", vim.lsp.buf.code_action)
+  nnoremap("<leader>lr", vim.lsp.buf.rename)
 end
 
 M.Lsp = Lsp
