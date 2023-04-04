@@ -13,6 +13,11 @@ return require('packer').startup(function(use)
   -- Treesitter for nice syntax
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('nvim-treesitter/playground')
+  -- Expand selection to code objects
+  use { 'RRethy/nvim-treesitter-textsubjects',
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter",
+  }
 
   -- Harpoon
   use('theprimeagen/harpoon')
@@ -58,4 +63,8 @@ return require('packer').startup(function(use)
 
   -- Format on save
   use("lukas-reineke/lsp-format.nvim")
+
+  -- Better git maybe
+  use("tpope/vim-fugitive")
+
 end)

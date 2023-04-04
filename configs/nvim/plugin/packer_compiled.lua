@@ -134,6 +134,13 @@ _G.packer_plugins = {
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-textsubjects"] = {
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/blorente/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textsubjects",
+    url = "https://github.com/RRethy/nvim-treesitter-textsubjects"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -169,6 +176,11 @@ _G.packer_plugins = {
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    url = "https://github.com/tpope/vim-fugitive"
+  },
   ["vim-startuptime"] = {
     loaded = true,
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/vim-startuptime",
@@ -177,6 +189,11 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-treesitter ]]
+vim.cmd [[ packadd nvim-treesitter-textsubjects ]]
+time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
