@@ -5,7 +5,7 @@ alias l='~/.local/bin/lvim '
 alias reload_term="source ~/.zshrc"
 
 # Easy access to dotfiles
-alias godot="cd $HOME/dotfiles && l ."
+alias godot="cd \$HOME/dotfiles && \$EDITOR ."
 
 function list_or_open() {
   file=$1

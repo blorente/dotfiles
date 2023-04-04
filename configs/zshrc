@@ -36,7 +36,7 @@ PATH="$PATH:$HOME/.local/bin"
 #alias load_nvm="[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"" # This loads nvm"
 
 # Editor config
-EDITOR=~/.local/bin/lvim
+export EDITOR=nvim
 
 # Git Manager Stuff
 alias gog='cd $(gtm find)'
