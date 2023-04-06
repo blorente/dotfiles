@@ -1,4 +1,3 @@
-print("hello from after textsubjects")
 require('nvim-treesitter.configs').setup {
   textsubjects = {
     enable = true,
