@@ -71,6 +71,21 @@ function Comment()
   nnoremap('<leader>/', comment.toggle.linewise.current)
 end
 
-M.Comment = Telescope
+M.Comment = Comment
 
+function Harpoon()
+  local mark = require("harpoon.mark")
+  local ui = require("harpoon.ui")
+  nnoremap("<leader>a", function()
+    mark.add_file();
+    print("Harpooned " .. vim.api.nvim_buf_get_name(0))
+  end)
+  nnoremap("<C-h>", ui.toggle_quick_menu)
+  nnoremap("<C-j>", function() ui.nav_file(1) end)
+  nnoremap("<C-k>", function() ui.nav_file(2) end)
+  nnoremap("<C-l>", function() ui.nav_file(3) end)
+  nnoremap("<C-;>", function() ui.nav_file(4) end)
+end
+
+M.Harpoon = Harpoon
 return M
