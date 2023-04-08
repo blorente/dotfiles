@@ -88,4 +88,11 @@ function Harpoon()
 end
 
 M.Harpoon = Harpoon
+
+
+function Undotree()
+  nnoremap("<leader>ut", vim.cmd.UndotreeToggle)
+end
+
+M.Undotree = Undotree
 return M

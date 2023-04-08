@@ -69,4 +69,7 @@ return require('packer').startup(function(use)
 
   -- Better git maybe
   use("tpope/vim-fugitive")
+
+  -- Better undos
+  use("mbbill/undotree")
 end)
