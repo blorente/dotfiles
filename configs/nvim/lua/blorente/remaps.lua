@@ -95,4 +95,11 @@ function Undotree()
 end
 
 M.Undotree = Undotree
+
+function Obsidian()
+  nnoremap("<leader>od", vim.cmd.ObsidianToday)
+  nnoremap("<leader>oy", vim.cmd.ObsidianYesterday)
+end
+
+M.Obsidian = Obsidian
 return M
