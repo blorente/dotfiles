@@ -75,11 +75,6 @@ function git_branch_select {
 }
 alias gbs='git_branch_select'
 
-function open_with_hub() {
-  hub browse -- issues/$1 
-}
-alias hub_open='open_with_hub '
-
 function save_wip() {
   (
   set -x
@@ -105,40 +100,15 @@ function restore_wip() {
 }
 alias gunwip='restore_wip '
 
-
-function backup_and_delete() {
-  (
-  set -x
-  save_wip
-  cur_branch=$(git branch | grep \* | cut -d ' ' -f2)
-  backup_branch=$(echo "blorente/backups/${cur_branch}")
-  if [[ $(git branch | grep "${backup_branch}" | wc -l) -eq 1 ]]; then
-    git branch -D "${backup_branch}"
-  fi
-  git checkout -b "${backup_branch}"
-  git branch -D "${cur_branch}"
-  git checkout master
-  git checkout -b "${cur_branch}"
-  )
-}
-alias git_override_backup="backup_and_delete "
-
-alias git_paste="git commit --amend --no-edit "
-alias git_create_empty='git commit -m "Empty commit to trigger Travis" --allow-empty -n '
-
-function _do_gh_clone() {
-  (
-  repo=$1
-  reponame=$(echo ${repo} | awk -F"/" '{print $4"/"$5}')
-  dest="${HOME}/github/$reponame"
-  set -ex
-  git clone ${repo} ${dest}
-  )
-}
-alias gh_clone="_do_gh_clone "
-
 function git_unmerge() {
   git add "$@"
   git reset HEAD "$@"
   git checkout "$@"
 }
+
+function git::find_missing_symbol_in_file() {
+  symbol=$1
+  f_ish=$2
+  git log -c -S"${symbol}" "**/${f_ish}.*"
+}
+alias g_find_missing_symbol="git::find_missing_symbol_in_file "

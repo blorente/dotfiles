@@ -7,4 +7,6 @@ function shaurl() {
   echo "Downloaded to ${file}"
   echo "Shasum:"
   echo "  ${sha}"
+  echo "Copying to clipboard..."
+  echo "${sha}" | awk '{print $1}' | pbcopy
 }
