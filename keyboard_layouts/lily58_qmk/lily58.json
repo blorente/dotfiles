@@ -58,12 +58,12 @@
       "KC_SLSH",
       "KC_RSFT",
       "KC_LALT",
-      "KC_LGUI",
+      "KC_TAB",
       "MO(1)",
       "KC_SPC",
       "KC_ENT",
-      "MO(2)",
       "KC_BSPC",
+      "MO(2)",
       "KC_RGUI"
     ],
     [
