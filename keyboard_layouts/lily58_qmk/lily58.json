@@ -2,7 +2,7 @@
   "version": 1,
   "notes": "",
   "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
-  "keyboard": "lily58/glow_enc",
+  "keyboard": "lily58/r2g",
   "keymap": "lily58_glow_enc_layout_mine",
   "layout": "LAYOUT",
   "layers": [
@@ -42,7 +42,7 @@
       "KC_K",
       "KC_L",
       "KC_SCLN",
-      "KC_QUOT",
+      "RGUI_T(KC_QUOT)",
       "KC_LSFT",
       "KC_Z",
       "KC_X",
