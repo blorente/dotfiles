@@ -50,7 +50,7 @@
       "KC_V",
       "KC_B",
       "LCTL(KC_A)",
-      "RSA(KC_SPC)",
+      "RSG(KC_SPC)",
       "KC_N",
       "KC_M",
       "KC_COMM",
@@ -59,11 +59,11 @@
       "KC_RSFT",
       "KC_LALT",
       "KC_TAB",
-      "MO(1)",
+      "LT(1,KC_TAB)",
       "KC_SPC",
       "KC_ENT",
-      "KC_BSPC",
-      "MO(2)",
+      "LT(2,KC_BSPC)",
+      "KC_RGUI",
       "KC_RGUI"
     ],
     [
