@@ -100,6 +100,8 @@ function restore_wip() {
 }
 alias gunwip='restore_wip '
 
+alias gunadd="git restore --staged "
+
 function git_unmerge() {
   git add "$@"
   git reset HEAD "$@"
