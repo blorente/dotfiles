@@ -6,6 +6,9 @@ alias reload_term="source ~/.zshrc"
 
 # Easy access to dotfiles
 alias godot="cd \$HOME/dotfiles && \$EDITOR ."
+gotools() {
+  cd "$(gop blorente/bltools)" && $EDITOR .
+}
 
 function list_or_open() {
   file=$1
