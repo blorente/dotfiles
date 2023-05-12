@@ -30,6 +30,9 @@ setopt    incappendhistory  #Immediately append to the history file, not just wh
 PATH="$PATH:/usr/local/bin"
 PATH="$PATH:$HOME/bin"
 PATH="$PATH:$HOME/.local/bin"
+# Krew is the kubectl plugin manager.
+# Ref: https://krew.sigs.k8s.io/docs/user-guide/setup/install/
+PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 ## Node Version Manager
 #export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
