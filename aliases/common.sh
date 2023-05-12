@@ -22,3 +22,9 @@ function goroot() {
   root=$(git rev-parse --show-toplevel)
   cd "${root}" || return
 }
+
+bltool() {
+  tools=$(gop blorente/bltools)
+  echo $tools
+  "$tools/run.sh" "$@"
+}
