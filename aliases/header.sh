@@ -42,6 +42,7 @@ alias cdr="cd $(git rev-parse --show-toplevel)"
 # Imports
 PATH="$PATH:/home/blorente/.conscript/bin"
 #source "$HOME/dotfiles/aliases/light_prompt.sh"
+source "$HOME/dotfiles/aliases/gh.sh"
 source "$HOME/dotfiles/aliases/git.sh"
 source "$HOME/dotfiles/aliases/common.sh"
 source "$HOME/dotfiles/aliases/pants.sh"
