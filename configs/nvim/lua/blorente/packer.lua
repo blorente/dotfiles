@@ -54,9 +54,9 @@ return require('packer').startup(function(use)
       { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' }, -- Required
+      { 'hrsh7th/nvim-cmp' },     -- Required
       { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' }, -- Required
+      { 'L3MON4D3/LuaSnip' },     -- Required
     }
   }
 
@@ -75,4 +75,7 @@ return require('packer').startup(function(use)
 
   -- Obsidian Navigation
   use("epwalsh/obsidian.nvim")
+
+  -- RenPy syntax
+  use("chaimleib/vim-renpy")
 end)

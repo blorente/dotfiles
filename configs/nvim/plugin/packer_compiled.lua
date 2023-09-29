@@ -191,6 +191,11 @@ _G.packer_plugins = {
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-renpy"] = {
+    loaded = true,
+    path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/vim-renpy",
+    url = "https://github.com/chaimleib/vim-renpy"
+  },
   ["vim-startuptime"] = {
     loaded = true,
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/vim-startuptime",
