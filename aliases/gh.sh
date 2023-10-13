@@ -11,6 +11,13 @@ gh::pr_to_md() {
   echo "[${gh_repo}#${pr_num}](${pr_link}): ${pr_title}" | pbcopy
 }
 
+function gh::prtomd() {
+  gh::pr_to_md "$@"
+}
+function gh::pr2md() {
+  gh::pr_to_md "$@"
+}
+
 gh::pr_to_slack() {
   pr_link=$1
   gh_host=$(echo "${pr_link}" | awk -F'/' '{print $3}')
@@ -22,4 +29,11 @@ gh::pr_to_slack() {
   pr_title=$(GH_HOST="${gh_host}" gh api "${pr_path}" --jq '.title')
   echo ":pr: [${pr_title}](${pr_link})"
   echo ":pr: [${pr_title}](${pr_link})" | pbcopy
+}
+
+function gh::prtoslack() {
+  gh::pr_to_slack "$@"
+}
+function gh::pr2slack() {
+  gh::pr_to_slack "$@"
 }
