@@ -37,3 +37,6 @@ function gh::prtoslack() {
 function gh::pr2slack() {
   gh::pr_to_slack "$@"
 }
+
+alias ghls="gtm link -f slack "
+alias ghlm="gtm link -f md "
