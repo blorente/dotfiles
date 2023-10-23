@@ -79,3 +79,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # Starship prompt
 # https://starship.rs/presets/
 eval "$(starship init zsh)"
+
+# zoxide, a rust-based 'cd' replacement
+# https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init zsh)"

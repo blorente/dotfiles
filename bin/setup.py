@@ -154,7 +154,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("pyright"),
 ]
 
-BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer")]
+BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer"), SP('zoxide')]
 APT_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
 PIP_PACKAGES: List[SystemPackage] = [
     SP("click"),
