@@ -76,6 +76,10 @@ fi
 export GOROOT="${brew_prefix}/golang/libexec"
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# Make libraries installed with brew available
+# Works for openssl, SDL2, all that C++ stuff.
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/"
+
 # Starship prompt
 # https://starship.rs/presets/
 eval "$(starship init zsh)"
