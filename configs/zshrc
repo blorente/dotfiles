@@ -78,7 +78,7 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # Make libraries installed with brew available
 # Works for openssl, SDL2, all that C++ stuff.
-export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/"
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/:$(brew --prefix)/lib/"
 
 # Starship prompt
 # https://starship.rs/presets/
