@@ -151,6 +151,11 @@ _G.packer_plugins = {
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/obsidian.nvim",
     url = "https://github.com/epwalsh/obsidian.nvim"
   },
+  onedark = {
+    loaded = true,
+    path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/onedark",
+    url = "https://github.com/navarasu/onedark.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/blorente/.local/share/nvim/site/pack/packer/start/packer.nvim",
