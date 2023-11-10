@@ -16,3 +16,10 @@ bltool() {
   echo $tools
   "$tools/run.sh" "$@"
 }
+
+mkscratch() {
+  mydir="${HOME}/code/scratch/scratch/$1"
+  mkdir -p "${mydir}"
+  cd "${mydir}" || exit
+  git init
+}
