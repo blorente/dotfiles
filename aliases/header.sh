@@ -5,7 +5,7 @@ alias l='~/.local/bin/lvim '
 alias reload_term="source ~/.zshrc"
 
 # Easy access to dotfiles
-alias godot="cd \$HOME/dotfiles && \$EDITOR ."
+alias godotfiles="cd \$HOME/dotfiles && \$EDITOR ."
 gotools() {
   cd "$(gop blorente/bltools)" && $EDITOR .
 }

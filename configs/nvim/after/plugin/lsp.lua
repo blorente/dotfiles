@@ -34,3 +34,5 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 local remaps = require("blorente.remaps")
 remaps.Lsp()
+
+require 'lspconfig'.gdscript.setup {}
