@@ -65,15 +65,23 @@ bindkey "^[[3~" delete-char
 
 export COURSIER_CREDENTIALS="$HOME/.config/coursier/credentials.properties"
 
-# Go setup
-export GOPATH=$HOME/go
 arch=$( uname -m )
 if [[ "${arch}" == "arm64" ]]; then
   brew_prefix="/opt/homebrew/opt"
 else
   brew_prefix="/opt/brew/opt"
 fi
-export GOROOT="${brew_prefix}/golang/libexec"
+
+# Go setup
+export GOPATH=$HOME/go
+# Go setup
+export GOPATH=$HOME/go
+if [[ "${os}" == "Darwin" ]]; then
+  export GOROOT="${goroot_prefix}/golang/libexec"
+else
+  export GOROOT=""
+fi
+
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 # Make libraries installed with brew available
