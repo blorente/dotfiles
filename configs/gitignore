@@ -1,4 +1,6 @@
 .ijwb/
 bazel-*
+.clwb/
+bazel-*/
 __bl/
 MODULE.bazel.lock

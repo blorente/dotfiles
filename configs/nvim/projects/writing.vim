@@ -1,0 +1,1 @@
+/Users/blorente/dotfiles/configs/writing.vim
