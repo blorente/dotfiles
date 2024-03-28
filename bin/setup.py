@@ -171,10 +171,6 @@ NPM_PACKAGES: List[SystemPackage] = [
 GO_PACKAGES: List[SystemPackage] = [SP("golang.org/x/tools/gopls@latest")]
 FREEFORM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
-        name="powerlevel10k",
-        package="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k",
-    ),
-    SystemPackage(
         name="starship",
         package="curl -sS https://starship.rs/install.sh | sh",
     ),
