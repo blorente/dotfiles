@@ -1,17 +1,18 @@
+source "$HOME/dotfiles/aliases/lib.sh"
+
 alias g="git "
 
 update_master_and_rebase () {
-    set -x
     remote=$1
     branch=$(git rev-parse --abbrev-ref HEAD )
     main=${2:-master}
     git stash
     git checkout "$main"
-    git fetch $remote
-    git pull --ff-only $remote "$main"
+    spinner "Fetching $remote" -- git fetch $remote
+    spinner "Pulling $remote $main" -- git pull --ff-only $remote "$main"
     say "updated main brancH"
     git checkout "$branch"
-    git rebase "$main"
+    spinner "Rebasing $main on top of $branch" -- git rebase "$main"
     res=$?
     if [[ res == 0 ]] ; then
       git stash pop
