@@ -152,6 +152,8 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("pandoc"),
     SP("gopls"),
     SP("pyright"),
+    # https://github.com/charmbracelet/gum
+    SP("gum"),
 ]
 
 BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer"), SP('zoxide')]
