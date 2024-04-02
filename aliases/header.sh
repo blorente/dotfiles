@@ -30,6 +30,15 @@ function run_and_say() {
 }
 alias ras="run_and_say "
 
+function run_and_print_if_failed() {
+  command=("${@}")
+  out=$("${command[@]}")
+  ret="$?"
+  if [[ "$ret" != 0 ]]; then
+    echo "$out"
+  fi
+}
+
 function check_input_has() {
   wanted="$1"
   cat /dev/stdin | grep "${wanted}" > /dev/null
