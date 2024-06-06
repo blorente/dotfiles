@@ -72,6 +72,14 @@ else
   brew_prefix="/opt/brew/opt"
 fi
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # Go setup
 export GOPATH=$HOME/go
 # Go setup
