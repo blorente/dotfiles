@@ -205,7 +205,7 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
     ),
     "neovim": ConfigFile(
         in_system_home_location=Path(".config/nvim/init.lua"),
-        in_repo_location=Path("neovim.init.lua"),
+        in_repo_location=Path("nvim/init.lua"),
     ),
     "writing": ConfigFile(
         in_system_home_location=Path(".config/nvim/projects/writing.vim"),

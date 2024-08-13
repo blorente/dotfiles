@@ -65,6 +65,7 @@ bindkey "^[[3~" delete-char
 
 export COURSIER_CREDENTIALS="$HOME/.config/coursier/credentials.properties"
 
+os=$( uname -s )
 arch=$( uname -m )
 if [[ "${arch}" == "arm64" ]]; then
   brew_prefix="/opt/homebrew/opt"
@@ -92,6 +93,13 @@ fi
 
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# Java setup
+if [[ "${os}" == "Darwin" ]]; then
+  export JAVA_HOME="$(/usr/libexec/java_home)"
+else
+  echo "Couldn't set java home, you're not on macOS!"
+fi
+
 # Make libraries installed with brew available
 # Works for openssl, SDL2, all that C++ stuff.
 export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/:$(brew --prefix)/lib/"
@@ -103,3 +111,6 @@ eval "$(starship init zsh)"
 # zoxide, a rust-based 'cd' replacement
 # https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init zsh)"
+
+# Maven stuff to show my username in Gradle Enterprise / Develocity builds
+declare -x MAVEN_OPTS="-Duser.name=blorente"
