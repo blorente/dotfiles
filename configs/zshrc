@@ -86,7 +86,7 @@ export GOPATH=$HOME/go
 # Go setup
 export GOPATH=$HOME/go
 if [[ "${os}" == "Darwin" ]]; then
-  export GOROOT="${goroot_prefix}/golang/libexec"
+  export GOROOT="${brew_prefix}/golang/libexec"
 else
   export GOROOT=""
 fi
