@@ -224,8 +224,8 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_repo_location=Path("p10k.zsh"),
     ),
     "alacritty": ConfigFile(
-        in_system_home_location=Path(".config/alacritty/alacritty.yml"),
-        in_repo_location=Path("alacritty.yml"),
+        in_system_home_location=Path(".config/alacritty/alacritty.toml"),
+        in_repo_location=Path("alacritty.toml"),
     ),
     "tmux": ConfigFile(
         in_system_home_location=Path(".tmux.conf"),
