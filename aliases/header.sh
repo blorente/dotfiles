@@ -13,11 +13,11 @@ gotools() {
 function list_or_open() {
   file=$1
   if [ "${file}" = "" ]; then
-    exa --all --oneline --header --icons "."
+    eza --all --oneline --header --icons "."
   elif [ -f "${file}" ]; then
     less "${file}"
   else
-    exa --all --oneline --header --icons "${file}"
+    eza --all --oneline --header --icons "${file}"
   fi
 }
 alias ls="list_or_open "

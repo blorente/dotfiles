@@ -141,7 +141,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("tmux"),
     SP("tree"),
     SP("python3"),
-    SP("exa"),
+    SP("eza"),
     SystemPackage(name="golang", package="golang"),
     SystemPackage(
         name="git-extras",
