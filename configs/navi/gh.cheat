@@ -1,0 +1,9 @@
+% ghlm
+
+# Create issue link for Markdown
+gh issue view "<issue>" --json url,title,number --template '[#{{.number}}: {{.title}}]({{.url}})' | pbcopy
+
+% ghls
+
+# Create issue link for Markdown
+gh issue view "<issue>" --json url,title,number --template '[#{{.number}}: {{.title}}]({{.url}})' | pbcopy

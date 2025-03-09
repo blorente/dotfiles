@@ -156,7 +156,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SP("gum"),
 ]
 
-BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer"), SP('zoxide')]
+BREW_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + [SP("rust-analyzer"), SP('zoxide'), SP('navi')]
 APT_PACKAGES: List[SystemPackage] = COMMON_SYSTEM_PACKAGES + []
 PIP_PACKAGES: List[SystemPackage] = [
     SP("click"),
@@ -242,6 +242,12 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
 }
 
 MACOS_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
+MACOS_CONFIG_FILES.update({
+  "navi": ConfigFile(
+        in_system_home_location=Path(".config/navi/"),
+        in_repo_location=Path("navi"),
+  ),
+})
 LINUX_CONFIG_FILES: Dict[str, ConfigFile] = COMMON_CONFIG_FILES
 
 

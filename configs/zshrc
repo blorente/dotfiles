@@ -115,8 +115,12 @@ eval "$(zoxide init zsh)"
 # Maven stuff to show my username in Gradle Enterprise / Develocity builds
 declare -x MAVEN_OPTS="-Duser.name=blorente"
 
+# Load the navi widget
+eval "$(navi widget zsh)"
+export NAVI_PATH="${NAVI_PATH}:${HOME}/.config/navi"
 
 extra_file="$HOME/.config/zshrc_extra"
 if [ -f "$extra_file" ]; then
   source "$extra_file"
 fi
+
