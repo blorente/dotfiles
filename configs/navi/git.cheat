@@ -1,0 +1,14 @@
+% git:ff
+
+# Git generic fast-forward 
+git pull --ff-only <remote> <branch>
+
+% git:ffm
+
+# Git fast-forward main from generic remote
+git pull --ff-only <remote> main
+
+% git:ffom
+
+# Git fast-forward origin main
+git pull --ff-only origin main
