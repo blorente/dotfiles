@@ -13,10 +13,10 @@ git pull --ff-only <remote> main
 # Git fast-forward a branch from origin
 git pull --ff-only origin <branch>
 
-% git:ffob
+% git:ffoh
 
-# Git fast-forward current branch from origin
-git pull --ff-only origin $(git branch --color=never | sed 's:\* ::')
+# Git fast-forward head from origin
+git pull --ff-only origin $(git rev-parse --abbrev-ref HEAD)
 
 % git:ffom
 
