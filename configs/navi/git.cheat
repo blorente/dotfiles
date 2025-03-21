@@ -8,6 +8,11 @@ git pull --ff-only <remote> <branch>
 # Git fast-forward main from generic remote
 git pull --ff-only <remote> main
 
+% git:ffo
+
+# Git fast-forward a branch from origin
+git pull --ff-only origin <branch>
+
 % git:ffom
 
 # Git fast-forward origin main
