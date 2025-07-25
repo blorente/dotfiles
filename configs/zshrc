@@ -124,3 +124,6 @@ if [ -f "$extra_file" ]; then
   source "$extra_file"
 fi
 
+# Terraform autocomplete
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
