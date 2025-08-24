@@ -1,38 +1,40 @@
-local lsp = require('lsp-zero').preset({})
-
+-- local lsp = require('lsp-zero')
 -- Don't really know what this line does
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-end)
+-- lsp.on_attach(function(client, bufnr)
+--   lsp.default_keymaps({ buffer = bufnr })
+-- end)
 
 -- List from https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
-lsp.ensure_installed({
-  'ts_ls',
-  'eslint',
-  'rust_analyzer',
-  'gopls',
-  'pyright',
-  'cmake',
-  'cssls',
-  'clangd',
-  'bashls',
-  'jdtls',
-  'lua_ls',
-  'html',
-  'jsonls',
-  'prosemd_lsp',
-  'svelte',
-})
-
-lsp.setup()
-
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-})
-
-local remaps = require("blorente.remaps")
-remaps.Lsp()
-
-require 'lspconfig'.gdscript.setup {}
+-- require('mason').setup({})
+-- require('mason-lspconfig').setup({
+--   ensure_installed = {
+--   'ts_ls',
+--   'eslint',
+--   'rust_analyzer',
+--   'gopls',
+--   'pyright',
+--   'cmake',
+--   'cssls',
+--   'clangd',
+--   'bashls',
+--   'jdtls',
+--   'lua_ls',
+--   'html',
+--   'jsonls',
+--   'prosemd_lsp',
+--   'svelte',
+-- },
+--   handlers = {
+--     function(server_name)
+--       require('lspconfig')[server_name].setup({})
+--     end,
+--   },
+-- })
+-- 
+--local cmp = require('cmp')
+--local cmp_select = { behavior = cmp.SelectBehavior.Select }
+--
+--local remaps = require("blorente.remaps")
+--remaps.Lsp()
+--
+--require 'lspconfig'.gdscript.setup {}
