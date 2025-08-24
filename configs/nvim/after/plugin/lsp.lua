@@ -7,7 +7,7 @@ end)
 
 -- List from https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 lsp.ensure_installed({
-  'tsserver',
+  'ts_ls',
   'eslint',
   'rust_analyzer',
   'gopls',
