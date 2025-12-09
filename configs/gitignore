@@ -4,3 +4,4 @@ bazel-*
 bazel-*/
 __bl/
 MODULE.bazel.lock
+.claude/

@@ -1,0 +1,5 @@
+% cht
+
+# Call cheat.sh for a tool
+curl 'https://cheat.sh/<tool>'
+
