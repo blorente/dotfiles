@@ -22,3 +22,18 @@ git pull --ff-only origin $(git rev-parse --abbrev-ref HEAD)
 
 # Git fast-forward origin main
 git pull --ff-only origin main
+
+% git:ffu
+
+# Git fast-forward a branch from upstream
+git pull --ff-only upstream <branch>
+
+% git:ffuh
+
+# Git fast-forward head from upstream
+git pull --ff-only upstream $(git rev-parse --abbrev-ref HEAD)
+
+% git:ffum
+
+# Git fast-forward upstream main
+git pull --ff-only upstream main
