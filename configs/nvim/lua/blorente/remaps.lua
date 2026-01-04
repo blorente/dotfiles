@@ -10,8 +10,6 @@ function vnoremap(shortcut, command)
   map('v', shortcut, command)
 end
 
-vim.g.mapleader = " "
-
 -- Write easy
 nnoremap("<leader>w", ":w<CR>")
 vnoremap("<leader>w", ":w<CR>")
