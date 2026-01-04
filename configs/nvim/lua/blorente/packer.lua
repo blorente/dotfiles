@@ -38,6 +38,10 @@ return require('packer').startup(function(use)
     'numToStr/Comment.nvim',
   }
 
+  -- LSP
+  use {
+    'neovim/nvim-lspconfig',
+  }
 --  -- LSP out of the box?
 --  use {
 --    'VonHeikemen/lsp-zero.nvim',
