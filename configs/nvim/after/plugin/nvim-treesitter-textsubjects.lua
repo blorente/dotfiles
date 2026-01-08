@@ -1,11 +1,12 @@
-require('nvim-treesitter.configs').setup {
-  textsubjects = {
-    enable = true,
-    prev_selection = ',', -- (Optional) keymap to select the previous selection
-    keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-      ['i;'] = 'textsubjects-container-inner',
-    },
-  },
-}
+-- TODO BL: Commenting after the migration to lazy nvim, probably don't want this plugin
+-- require('nvim-treesitter.configs').setup {
+--   textsubjects = {
+--     enable = true,
+--     prev_selection = ',', -- (Optional) keymap to select the previous selection
+--     keymaps = {
+--       ['.'] = 'textsubjects-smart',
+--       [';'] = 'textsubjects-container-outer',
+--       ['i;'] = 'textsubjects-container-inner',
+--     },
+--   },
+-- }
