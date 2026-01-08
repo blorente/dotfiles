@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    branch = 'master',
     dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
@@ -70,27 +70,38 @@ return {
   'numToStr/Comment.nvim',
 
 --  -- LSP
---  use {
---    'VonHeikemen/lsp-zero.nvim',
---    branch = 'v4.x',
---    dependencies = {
---      -- LSP Support
---      { 'neovim/nvim-lspconfig' }, -- Required
---      {
---        -- Optional
---        'williamboman/mason.nvim',
---        run = function()
---          pcall(vim.cmd, 'MasonUpdate')
---        end,
---      },
---      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
---
---      -- Autocompletion
---      { 'hrsh7th/nvim-cmp' },     -- Required
---      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
---      { 'L3MON4D3/LuaSnip' },     -- Required
---    }
---  }
+  { 'mason-org/mason.nvim', opts = {} },
+
+  {
+    'mason-org/mason-lspconfig.nvim',
+    dependencies = { 'neovim/nvim-lspconfig' },
+    opts = {},
+    init = function()
+      require("blorente.remaps").Lsp()
+    end,
+  },
+
+  {
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = '1.*',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      completion = {
+        documentation = {
+          auto_show = true,
+        },
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      signature = { enabled = true },
+    },
+
+    opts_extend = { 'sources.default' },
+  },
 
   -- Debug startup time
   "dstein64/vim-startuptime",
