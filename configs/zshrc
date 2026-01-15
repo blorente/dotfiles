@@ -81,6 +81,10 @@ then
   compinit
 fi
 
+if [[ "${os}" == "Linux" ]]; then
+  export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+fi
+
 # Go setup
 export GOPATH=$HOME/go
 # Go setup
