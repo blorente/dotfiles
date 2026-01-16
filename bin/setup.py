@@ -123,7 +123,7 @@ COMMON_SYSTEM_PACKAGES: List[SystemPackage] = [
     SystemPackage(
         name="neovim",
         package="neovim",
-        sources={"Apt": "ppa:neovim-ppa/unstable"},
+        sources={"Freeform": "ppa:neovim-ppa/unstable"},
     ),
     SystemPackage(
         name="zsh",
@@ -174,10 +174,10 @@ FREEFORM_PACKAGES: List[SystemPackage] = [
         name="starship",
         package="curl -sS https://starship.rs/install.sh | sh",
     ),
-    SystemPackage(
-        name="nvim-plug",
-        package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
-    ),
+    # SystemPackage(
+    #     name="nvim-plug",
+    #     package='curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+    # ),
 #    SystemPackage(
 #        name="nvm+node",
 #        package="curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash",
@@ -204,17 +204,17 @@ COMMON_CONFIG_FILES: Dict[str, ConfigFile] = {
         in_system_home_location=Path(".vimrc"), in_repo_location=Path("vimrc")
     ),
     "neovim": ConfigFile(
-        in_system_home_location=Path(".config/nvim/init.lua"),
-        in_repo_location=Path("nvim/init.lua"),
+        in_system_home_location=Path(".config/nvim"),
+        in_repo_location=Path("nvim"),
     ),
-    "writing": ConfigFile(
-        in_system_home_location=Path(".config/nvim/projects/writing.vim"),
-        in_repo_location=Path("writing.vim"),
-    ),
-    "dnd": ConfigFile(
-        in_system_home_location=Path(".config/nvim/projects/dnd.vim"),
-        in_repo_location=Path("writing.vim"),
-    ),
+    # "writing": ConfigFile(
+    #     in_system_home_location=Path(".config/nvim/projects/writing.vim"),
+    #     in_repo_location=Path("writing.vim"),
+    # ),
+    # "dnd": ConfigFile(
+    #     in_system_home_location=Path(".config/nvim/projects/dnd.vim"),
+    #     in_repo_location=Path("writing.vim"),
+    # ),
     "zsh-completions": ConfigFile(
         in_system_home_location=Path("completions.zsh"),
         in_repo_location=Path("zsh_completions"),
