@@ -13,7 +13,7 @@ fi
 # fzf config
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='--height 20% --layout=reverse --border'
-
+source <(fzf --zsh)
 
 # Powerlevel10k customization
 #typeset -g POWERLEVEL9K_VCS_HIDE_TAGS=true
