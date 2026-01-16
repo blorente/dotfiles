@@ -16,7 +16,7 @@ if [[ "$os" == "linux" ]]; then
 fi
 
 pushd "${tmp_dir}"
-curl -LO "https://github.com/neovim/neovim/releases/download/stable/${package_name}.tar.gz"
-tar xzf "${package_name}.tar.gz"
-install_binary_to_home "./${package_name}/bin/nvim" "nvim"
+curl -LO "https://github.com/neovim/neovim/releases/download/stable/${package_name}.appimage"
+chmod u+x "${package_name}.appimage"
+install_binary_to_home "./${package_name}.appimage" "nvim"
 
