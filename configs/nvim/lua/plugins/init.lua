@@ -7,6 +7,7 @@ return {
 
   -- Install color schemes
   { 'navarasu/onedark.nvim', name = "onedark" },
+  { 'tiagovla/tokyodark.nvim', name = "tokyodark"},
   { 
     'rose-pine/neovim',
     name = 'rose-pine',
@@ -67,7 +68,17 @@ return {
   },
 
   -- Easy comments
-  'numToStr/Comment.nvim',
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = "<leader>/",
+      },
+      opleader = {
+        line = "<leader>/",
+      },
+    },
+  },
 
 --  -- LSP
   { 'mason-org/mason.nvim', opts = {} },
