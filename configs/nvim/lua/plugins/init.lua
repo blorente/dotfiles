@@ -8,14 +8,19 @@ return {
   -- Install color schemes
   { 'navarasu/onedark.nvim', name = "onedark" },
   { 'tiagovla/tokyodark.nvim', name = "tokyodark"},
+  { 'scottmckendry/cyberdream.nvim',
+      name = "cyberdream",
+      lazy = false,
+      priority = 1000,
+      opts = {
+        transparent = true,
+      },
+  },
   { 
     'rose-pine/neovim',
     name = 'rose-pine',
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.cmd([[colorscheme rose-pine]])
-    end,
   },
   -- Switch to that color scheme
 
