@@ -1,5 +1,8 @@
 [window]
 dynamic_title = true
+decorations = "None"
+opacity = 0.85
+blur = true
 
 [font]
 size = 20.0
@@ -31,5 +34,7 @@ bindings = [
   { key = "Left",  mods = "Alt", chars = "\u001BB" },
   { key = "Equals", mods = "Command|Shift", action = "IncreaseFontSize" },
   { key = "Minus", mods = "Command", action = "DecreaseFontSize" },
+  { key = "P", mods = "Command|Control|Shift|Alt", action = "IncreaseFontSize" },
+  { key = "M", mods = "Command|Control|Shift|Alt", action = "DecreaseFontSize" },
   { key = "N", mods = "Command", action = "SpawnNewInstance" },
 ]
