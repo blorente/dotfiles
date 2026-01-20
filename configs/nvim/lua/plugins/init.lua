@@ -128,5 +128,25 @@ return {
 
   -- Better undos
   "mbbill/undotree",
+
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- use latest release, remove to use latest commit
+    ft = "markdown",
+    ---@module 'obsidian'
+    ---@type obsidian.config
+    opts = {
+      legacy_commands = false, -- this will be removed in the next major release
+      workspaces = {
+        {
+          name = "notes",
+          path = "~/notes",
+        },
+      },
+    },
+    config = function()
+      vim.opt.conceallevel = 1
+    end
+  },
 }
 
