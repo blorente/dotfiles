@@ -7,13 +7,21 @@ return {
 
   -- Install color schemes
   { 'navarasu/onedark.nvim', name = "onedark" },
-  { 'tiagovla/tokyodark.nvim', name = "tokyodark"},
+  { 
+    'tiagovla/tokyodark.nvim',
+    name = "tokyodark",
+    opts = {
+      transparent_background = true,
+    },
+  },
   { 'scottmckendry/cyberdream.nvim',
       name = "cyberdream",
       lazy = false,
       priority = 1000,
       opts = {
         transparent = true,
+        saturation = 0.9,
+        italic_comments = true,
       },
   },
   { 
@@ -22,7 +30,22 @@ return {
     lazy = false,
     priority = 1000,
   },
-  -- Switch to that color scheme
+  { 
+    "catppuccin/nvim", 
+    name = "catppuccin",
+    priority = 1000,
+    opts = {
+       transparent_background = true,
+    },
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+  },
 
   -- Treesitter for nice syntax
   {
