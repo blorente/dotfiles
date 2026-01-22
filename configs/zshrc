@@ -81,10 +81,6 @@ then
   compinit
 fi
 
-# if [[ "${os}" == "Linux" ]]; then
-#   export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-# fi
-
 # Go setup
 export GOPATH=$HOME/go
 # Go setup
@@ -106,7 +102,10 @@ fi
 
 # Make libraries installed with brew available
 # Works for openssl, SDL2, all that C++ stuff.
-export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/:$(brew --prefix)/lib/"
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/local/lib/"
+if [[ "${os}" == "Darwin" ]]; then
+  export LIBRARY_PATH="$LIBRARY_PATH::$(brew --prefix)/lib/"
+fi
 
 # Starship prompt
 # https://starship.rs/presets/
@@ -127,7 +126,3 @@ extra_file="$HOME/.config/zshrc_extra"
 if [ -f "$extra_file" ]; then
   source "$extra_file"
 fi
-
-# Terraform autocomplete
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
