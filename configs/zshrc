@@ -126,3 +126,6 @@ extra_file="$HOME/.config/zshrc_extra"
 if [ -f "$extra_file" ]; then
   source "$extra_file"
 fi
+
+# BL: Delete after TCNA engagement is done 
+source ~/.config/tcna/.zshrc
