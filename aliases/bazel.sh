@@ -7,7 +7,9 @@ function maybe_dotslash_bazel() {
 }
 
 alias b="maybe_dotslash_bazel "
+alias bq="maybe_dotslash_bazel query "
 alias bqb="maybe_dotslash_bazel query --output build "
+alias bqk="maybe_dotslash_bazel query --output label_kind "
 alias bb="maybe_dotslash_bazel build "
 alias bt="maybe_dotslash_bazel test "
 
