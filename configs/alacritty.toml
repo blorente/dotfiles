@@ -1,7 +1,7 @@
 [window]
 dynamic_title = true
 decorations = "None"
-opacity = 0.85
+opacity = 0.90
 blur = true
 
 [font]
