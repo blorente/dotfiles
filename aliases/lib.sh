@@ -23,3 +23,10 @@ EOF
   gum spin -s line --show-output --title "$1" "$s"
 }
 
+function print_os() {
+  uname -s |  tr '[:upper:]' '[:lower:]'
+}
+
+function print_arch() {
+  uname -m
+}
