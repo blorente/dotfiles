@@ -40,3 +40,14 @@ function setup_ruleset_with_patches() {
     git commit -m "Patch: $patch"
   done
 }
+
+function bzltar() {
+    target="$1"
+    bazel build "$target" "${@:2}"
+    output=$(bazel cquery --output=files "$target")
+    if [[ -d "$output" ]]; then
+        find "$output";
+    else
+        tar tvf "$output";
+    fi
+}
