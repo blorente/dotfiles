@@ -1,0 +1,15 @@
+% bazel:bqb
+
+# Bazel query --output build
+bazel query --output build <target>
+
+% bazel:bqk
+
+# Bazel query --output label_kind
+bazel query --output label_kind <target>
+
+% bazel:bzltar
+
+# Build a bazel tar and see the target
+bzltar <target>
+
