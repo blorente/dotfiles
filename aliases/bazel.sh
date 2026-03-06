@@ -48,6 +48,6 @@ function bzltar() {
     if [[ -d "$output" ]]; then
         find "$output";
     else
-        tar tvf "$output";
+        tar tf "$output";
     fi
 }
