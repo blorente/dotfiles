@@ -37,3 +37,8 @@ git pull --ff-only upstream $(git rev-parse --abbrev-ref HEAD)
 
 # Git fast-forward upstream main
 git pull --ff-only upstream main
+
+% git:ffh
+
+# Git fast-forward head on generic remote
+git pull --ff-only <remote> $(git rev-parse --abbrev-ref HEAD)
